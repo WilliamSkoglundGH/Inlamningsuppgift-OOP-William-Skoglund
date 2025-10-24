@@ -1,4 +1,4 @@
 package com.skoglund.entity.items;
 
-public class FishingLine {
+public class FishingReel {
 }
