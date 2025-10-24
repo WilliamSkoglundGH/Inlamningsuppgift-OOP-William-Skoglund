@@ -1,8 +1,8 @@
 package com.skoglund;
 
-import com.skoglund.entity.items.FishingReel;
-import com.skoglund.entity.items.FishingRod;
-import com.skoglund.entity.items.Item;
+import com.skoglund.menu.EquipmentMenuChoice;
+import com.skoglund.menu.MembershipMenuChoice;
+import com.skoglund.menu.RentalMenuChoice;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -23,57 +23,21 @@ public class Main {
 
             try{
                 int menuChoice = scanner.nextInt();
+                scanner.nextLine();
                 switch(menuChoice){
                         case 1:
-                            boolean showMenu1 = true;
-                            do {
-                                System.out.println("Här hanterar du medlemskap!");
-                                System.out.println("1) Lägg till medlem");
-                                System.out.println("2) Ta bort medlem");
-                                System.out.println("3) Sök efter medlem i medlemsregistret");
-                                System.out.println("4) Ändra medlemsuppgifter");
-                                System.out.println("5) Gå tillbaks till startsidan");
-                                System.out.println("Gör ditt val (1-4)");
-
-                                try {
-                                    int menu1Choice = scanner.nextInt();
-                                    switch(menu1Choice){
-                                        case 1:
-                                            //Lägg till medlem
-                                            break;
-
-                                        case 2:
-                                            //Ta bort medlem
-                                            break;
-
-                                        case 3:
-                                            //Sök efter medlem i medlemsregistret
-                                            break;
-
-                                        case 4:
-                                            //ändra medlemsuppgifter
-                                            break;
-
-                                        case 5:
-                                            System.out.println("Du skickas tillbaks till startsidan!");
-                                            showMenu1 = false;
-                                            continue;
-
-                                        default:
-                                            System.out.println("Heltalet du skriver in måste vara mellan 1 tom 6");
-                                    }
-                                } catch (NumberFormatException ex) {
-                                    System.out.println("Du måste ange ett heltal!");
-                                }
-                            }while(showMenu1);
-
+                            MembershipMenuChoice menuChoice1 = new MembershipMenuChoice();
+                            menuChoice1.showMenuChoiceMembership();
+                            break;
 
                     case 2:
-                       //Visa de olika delarna av uthyrningshantering
+                        EquipmentMenuChoice menuChoice2 = new EquipmentMenuChoice();
+                        menuChoice2.showMenuChoiceEquipment();
                         break;
 
                     case 3:
-                        //Visa de olika delarna av hantering av uthyrningsmaterial
+                        RentalMenuChoice menuChoice3 = new RentalMenuChoice();
+                        menuChoice3.showMenuChoiceRental();
                         break;
 
                     case 4:
@@ -95,9 +59,6 @@ public class Main {
             finally{
                 scanner.nextLine();
             }
-            System.out.println("Klicka på ENTER för att komma tillbaks till menyn!");
-            scanner.nextLine();
-
         }while(showMenu);
 
     }
