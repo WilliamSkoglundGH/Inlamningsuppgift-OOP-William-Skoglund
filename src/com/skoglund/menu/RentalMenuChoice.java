@@ -36,7 +36,7 @@ public class RentalMenuChoice {
                         continue;
 
                     default:
-                        System.out.println("Heltalet du skriver in måste vara mellan 1 tom 6");
+                        System.out.println("Heltalet du skriver in måste vara mellan 1 tom 4");
                 }
             } catch (NumberFormatException ex) {
                 System.out.println("Du måste ange ett heltal!");
