@@ -5,7 +5,7 @@ public class Member {
     private String Id;
     private String ageGroup;
     //ID ska ges automatiskt vid skapande av member
-    //private List<uthyrningshistorik>;
+    //private List<Rental>;
     //Agegroup agegroup ---- barn,ungdom,vuxen,pensionär
 
     public Member(){
@@ -17,6 +17,19 @@ public class Member {
         this.ageGroup = ageGroup;
         //ge ett random ID
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getId() {
+        return Id;
+    }
+
+    public String getAgeGroup() {
+        return ageGroup;
+    }
+
     public void showRentalHistory(){
 
     }

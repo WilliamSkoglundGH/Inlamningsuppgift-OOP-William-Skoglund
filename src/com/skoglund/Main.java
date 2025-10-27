@@ -1,14 +1,19 @@
 package com.skoglund;
 
+import com.skoglund.administration.MemberRegistry;
 import com.skoglund.menu.EquipmentMenuChoice;
 import com.skoglund.menu.MembershipMenuChoice;
 import com.skoglund.menu.RentalMenuChoice;
+import com.skoglund.service.MembershipService;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args){
+        MemberRegistry memberRegistry = new MemberRegistry();
+        MembershipService membershipService = new MembershipService(memberRegistry);
+
         Scanner scanner = new Scanner(System.in);
         boolean showMenu = true;
         do{
@@ -27,7 +32,7 @@ public class Main {
                 switch(menuChoice){
                         case 1:
                             MembershipMenuChoice menuChoice1 = new MembershipMenuChoice();
-                            menuChoice1.showMenuChoiceMembership();
+                            menuChoice1.showMenuChoiceMembership(memberRegistry, membershipService);
                             break;
 
                     case 2:
