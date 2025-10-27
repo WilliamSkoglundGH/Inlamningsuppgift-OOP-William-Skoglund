@@ -1,5 +1,9 @@
 package com.skoglund.menu;
 
+import com.skoglund.administration.MemberRegistry;
+import com.skoglund.entity.Member;
+import com.skoglund.service.MembershipService;
+
 import java.util.Scanner;
 
 public class MembershipMenuChoice {
