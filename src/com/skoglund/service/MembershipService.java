@@ -19,17 +19,22 @@ public class MembershipService {
     }
 
     public void showAllMembers(){
-        for(Member member : memberRegistry.getMemberList()){
-            System.out.println(member.getName() + " | " + member.getId() + " | " + member.getAgeGroup());
-        }
+        this.memberRegistry.showAllMembers();
+    }
+
+    public void searchAndDisplayMember(String ID){
+        this.memberRegistry.searchAndDisplayMember(ID);
+    }
+
+    public Member searchAndGetMember(String ID){
+        return this.memberRegistry.searchAndGetMember(ID);
     }
 
 
-    //public void searchForMember();
-
-
-    //public void sortMembersByName();
-
-
     //public void sortMembersByAge();
+
 }
+
+
+
+
