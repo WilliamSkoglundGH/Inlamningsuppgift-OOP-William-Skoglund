@@ -93,7 +93,7 @@ public class MembershipMenuChoice {
 
                                         case 3:
                                             System.out.println("3) Ändra åldersgrupp");
-                                            System.out.print("Ange ny åldersgrupp: ");
+                                            System.out.print("Ange ny åldersgrupp(barn,ungdom,vuxen,pensionär): ");
                                             String newAgeGroup = scanner.nextLine();
                                             memberForChange.setAgeGroup(newAgeGroup);
                                             System.out.println("Åldersgrupp ändrat, ny åldersgrupp: " + newAgeGroup);

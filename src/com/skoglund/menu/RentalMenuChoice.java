@@ -1,38 +1,99 @@
 package com.skoglund.menu;
 
+import com.skoglund.administration.Inventory;
+import com.skoglund.administration.MemberRegistry;
+import com.skoglund.entity.Member;
+import com.skoglund.service.RentalService;
+
 import java.util.Scanner;
 
 public class RentalMenuChoice {
 
-    public void showMenuChoiceRental(){
+    public void showMenuChoiceRental(RentalService rentalService){
         Scanner scanner = new Scanner(System.in);
-        boolean showMenu3 = true;
-        do {
-            System.out.println("Här hanterar du klubbens uthyrningsmaterial!");
-            System.out.println("1) Visa allt material");
-            System.out.println("2) Visa material tillgängligt för uthyrning");
-            System.out.println("3) Visa uthyrt material");
+        boolean showMenu = true;
+        do{
+            System.out.println("Här hanterar du uthyrningar!");
+            System.out.println("1) Boka ny uthyrning");
+            System.out.println("2) Avsluta en pågående uthyrning");
+            System.out.println("3) Visa alla pågående uthyrningar");
             System.out.println("4) Gå tillbaks till startsidan");
             System.out.print("Gör ditt val (1-4): ");
 
             try {
-                int menu2Choice = scanner.nextInt();
-                switch(menu2Choice){
+                int menuChoice = scanner.nextInt();
+                scanner.nextLine();
+                switch(menuChoice){
                     case 1:
-                        //Visa allt material (inventory)
+                        boolean showBookingMenu = true;
+                        do{
+                            System.out.println("1) Här bokar du en ny uthyrning");
+                            System.out.println("Detta är klubbens utrustning:");
+                            System.out.println("1) Fiskespö");
+                            System.out.println("2) Fiskerulle");
+                            System.out.println("3) Betesset");
+                            System.out.print("Vilken utrustning gäller bokningen: ");
+
+                            int choice = scanner.nextInt();
+                            scanner.nextLine();
+
+
+                            switch(choice){
+                                case 1:
+
+
+                                    break;
+
+                                case 2:
+                                    //boka fiskerulle
+                                    break;
+
+                                case 3:
+                                    //boka betesset
+                                    break;
+
+                                case 4:
+                                    System.out.println("Bokning/ar sparas, du återgår till menyn!");
+                                    showBookingMenu = false;
+                                    break;
+
+                                default:
+                                    System.out.println("Heltalet du anger måste vara mellan 1 tom 4");
+                                    break;
+                            }
+                        }while(showBookingMenu);
+
+                        System.out.print("Ange vilken utrustning(fiskespö, fiskerulle, betesset): ");
+
+                        System.out.println("Ange kundID: ");
+                        String ID = scanner.nextLine();
+
+                        System.out.println("Ange uthyrningsperiod: ");
+                        String rentalPeriod = scanner.nextLine();
+
+                        Member member = memberRegistry.searchAndGetMember(ID);
+                        if(member == null){
+                            System.out.println("ID matchar ej någon registrerad medlem!");
+                        }
+                        else{
+                            //gör bokningen!
+                        }
+
+
+                        //Boka ny uthyrning
                         break;
 
                     case 2:
-                        //Visa material tillgängligt för uthyrning
+                        //Avsluta en pågående uthyrning
                         break;
 
                     case 3:
-                        //Visa uthyrt material
+                        //Visa alla pågende uthyrningar
                         break;
 
                     case 4:
                         System.out.println("Klicka ENTER för att komma tillbaks till startsidan!");
-                        showMenu3 = false;
+                        showBookingMenu = false;
                         continue;
 
                     default:
@@ -41,6 +102,8 @@ public class RentalMenuChoice {
             } catch (NumberFormatException ex) {
                 System.out.println("Du måste ange ett heltal!");
             }
-        }while(showMenu3);
+
+        }while(showMenu);
     }
 }
+

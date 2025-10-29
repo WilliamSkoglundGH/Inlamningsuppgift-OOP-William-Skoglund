@@ -4,14 +4,14 @@ import java.util.Scanner;
 
 public class EquipmentMenuChoice {
 
-    public void showMenuChoiceEquipment(){
+    public void showMenuChoiceRental(){
         Scanner scanner = new Scanner(System.in);
-        boolean showMenu2 = true;
-        do{
-            System.out.println("Här hanterar uthyrningar!");
-            System.out.println("1) Boka ny uthyrning");
-            System.out.println("2) Avsluta en pågående uthyrning");
-            System.out.println("3) Visa alla pågående uthyrningar");
+        boolean showMenu3 = true;
+        do {
+            System.out.println("Här hanterar du klubbens uthyrningsmaterial!");
+            System.out.println("1) Visa allt material");
+            System.out.println("2) Visa material tillgängligt för uthyrning");
+            System.out.println("3) Visa uthyrt material");
             System.out.println("4) Gå tillbaks till startsidan");
             System.out.print("Gör ditt val (1-4): ");
 
@@ -19,20 +19,20 @@ public class EquipmentMenuChoice {
                 int menu2Choice = scanner.nextInt();
                 switch(menu2Choice){
                     case 1:
-                        //Boka ny uthyrning
+                        //Visa allt material (inventory)
                         break;
 
                     case 2:
-                        //Avsluta en pågående uthyrning
+                        //Visa material tillgängligt för uthyrning
                         break;
 
                     case 3:
-                        //Visa alla pågende uthyrningar
+                        //Visa uthyrt material
                         break;
 
                     case 4:
                         System.out.println("Klicka ENTER för att komma tillbaks till startsidan!");
-                        showMenu2 = false;
+                        showMenu3 = false;
                         continue;
 
                     default:
@@ -41,8 +41,6 @@ public class EquipmentMenuChoice {
             } catch (NumberFormatException ex) {
                 System.out.println("Du måste ange ett heltal!");
             }
-
-        }while(showMenu2);
+        }while(showMenu3);
     }
 }
-

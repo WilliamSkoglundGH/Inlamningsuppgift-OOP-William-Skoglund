@@ -1,14 +1,14 @@
 package com.skoglund.entity;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Member {
     private String name;
     private String Id;
     private String ageGroup;
-    //ID ska ges automatiskt vid skapande av member
-    //private List<Rental>;
-    //Agegroup agegroup ---- barn,ungdom,vuxen,pensionär
+    private List<Rental> rentalHistory;
 
     Random random = new Random();
     StringBuilder stringBuilder = new StringBuilder();
@@ -21,6 +21,7 @@ public class Member {
         this.name = name;
         this.ageGroup = ageGroup;
         this.Id = createID();
+        rentalHistory = new ArrayList<>();
     }
 
     private String createID(){
@@ -56,9 +57,9 @@ public class Member {
     }
 
     public void showRentalHistory(){
-
-    }
-    public void showActiveRentals(){
+        for(Rental rental : rentalHistory){
+            //printa ut varje rental (alltså varje uthyrning för denna individ)
+        }
 
     }
 }
