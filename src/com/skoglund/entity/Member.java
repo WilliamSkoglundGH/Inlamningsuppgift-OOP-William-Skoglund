@@ -47,6 +47,10 @@ public class Member {
         return ageGroup;
     }
 
+    public List<Rental> getActiveRentals() {
+        return activeRentals;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -78,5 +82,13 @@ public class Member {
         for(Rental rental : activeRentals){
             System.out.println(rental.item + " | " + rental.rentalTime + "| " + rental.rentalTime);
         }
+    }
+    public Rental getSpecificRental(String itemType){
+        for(Rental rental : activeRentals){
+            if(rental.item.getType().equalsIgnoreCase(itemType)){
+                return rental;
+            }
+        }
+        return null;
     }
 }

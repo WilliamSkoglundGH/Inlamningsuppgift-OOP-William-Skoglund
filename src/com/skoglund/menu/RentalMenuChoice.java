@@ -152,18 +152,34 @@ public class RentalMenuChoice {
 
                     case 2:
                         //avsluta en aktiv uthyrning
+                        System.out.println("2) Här avslutar du en pågående uthyrning");
+                        System.out.println("Ange medlems ID (för kunden bokningen gäller): ");
+                        String ID = scanner.nextLine();
 
+                        Member member = memberRegistry.searchAndGetMember(ID);
+                        if(member == null){
+                            System.out.println("Ingen medlem är registrerad under detta ID");
+                        }
+                        else{
+                            System.out.println("Ange vilken utrustning bokningen gäller");
+                            System.out.print("(fiskespö, fiskerulle eller betesset): ");
+                            String itemType = scanner.nextLine();
 
-
-
-
+                            Rental rental = member.getSpecificRental(itemType);
+                            if(rental == null){
+                                System.out.println("Medlemmen har ingen aktiv uthyrning med " + itemType);
+                            }
+                            else{
+                                rentalService.finishRental(member, rental);
+                            }
+                        }
                         break;
 
                     case 3:
                         System.out.println("Här visar du en medlems pågående uthyrningar");
                         System.out.println("Ange ID för medlemmen:");
-                        String ID = scanner.nextLine();
-                        Member member1 = memberRegistry.searchAndGetMember(ID);
+                        String Id = scanner.nextLine();
+                        Member member1 = memberRegistry.searchAndGetMember(Id);
                         if(member1 == null){
                             System.out.println("Det finns ingen registrerad medlem med det ID:et");
                         }
@@ -175,8 +191,8 @@ public class RentalMenuChoice {
                     case 4:
                         System.out.println("Här visar du en medlems uthyrningshistorik");
                         System.out.println("Ange ID för medlemmen:");
-                        String IDD = scanner.nextLine();
-                        Member member2 = memberRegistry.searchAndGetMember(IDD);
+                        String id = scanner.nextLine();
+                        Member member2 = memberRegistry.searchAndGetMember(id);
                         if(member2 == null){
                             System.out.println("Det finns ingen registrerad medlem med det ID:et");
                         }

@@ -9,7 +9,7 @@ public class EquipmentMenuChoice {
         boolean showMenu3 = true;
         do {
             System.out.println("Här hanterar du klubbens uthyrningsmaterial!");
-            System.out.println("1) Visa allt material");
+            System.out.println("1) Visa klubbens material");
             System.out.println("2) Visa material tillgängligt för uthyrning");
             System.out.println("3) Visa uthyrt material");
             System.out.println("4) Gå tillbaks till startsidan");
