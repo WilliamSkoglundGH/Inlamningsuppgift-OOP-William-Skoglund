@@ -8,7 +8,8 @@ public class Member {
     private String name;
     private String Id;
     private String ageGroup;
-    private List<Rental> rentalHistory;
+    private List<Rental> activeRentals;
+    private List<String> rentalHistory;
 
     Random random = new Random();
     StringBuilder stringBuilder = new StringBuilder();
@@ -21,7 +22,9 @@ public class Member {
         this.name = name;
         this.ageGroup = ageGroup;
         this.Id = createID();
+        activeRentals = new ArrayList<>();
         rentalHistory = new ArrayList<>();
+        rentalHistory.add("Uthyrningshistorik för: " + this.name + " | " + this.Id + " | " + this.ageGroup);
     }
 
     private String createID(){
@@ -56,10 +59,24 @@ public class Member {
         this.ageGroup = ageGroup;
     }
 
-    public void showRentalHistory(){
-        for(Rental rental : rentalHistory){
-            //printa ut varje rental (alltså varje uthyrning för denna individ)
-        }
+    public void addNewRental(Rental rental){
+        activeRentals.add(rental);
+        rentalHistory.add("Ny bokning: | Utrustning: " + rental.item + " | Uthyrningsperiod: " + rental.rentalTime);
+    }
 
+    public void finishRental(Rental rental){
+        activeRentals.remove(rental);
+        rentalHistory.add("Avslutad bokning: | Utrustning: " + rental.item + " | Uthyrningsperiod: " + rental.rentalTime);
+    }
+
+    public void showRentalHistory(){
+        for(String history : rentalHistory){
+            System.out.println(history);
+        }
+    }
+    public void showActiveRentals(){
+        for(Rental rental : activeRentals){
+            System.out.println(rental.item + " | " + rental.rentalTime + "| " + rental.rentalTime);
+        }
     }
 }

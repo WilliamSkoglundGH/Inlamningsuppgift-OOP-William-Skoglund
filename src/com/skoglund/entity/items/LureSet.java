@@ -7,15 +7,20 @@ public class LureSet extends Item {
     public LureSet(){
 
     }
-    public LureSet(String brand, String color, String lureType){
-        super(brand, color);
+    public LureSet(String brand, String color, boolean isAvailable, String lureType){
+        super(brand, color, isAvailable);
         this.lureType = lureType;
     }
 
     @Override
     public void showItemInfo() {
-        System.out.println("Betesset av varumärket: " + getBrand() + " | Färg: " + getColor());
-        System.out.println("Settet innehåller: " + this.amountOfLures + " beten och är av typen: " + this.lureType);
+        System.out.println("(Betesset av varumärket: " + getBrand() + " | Färg: " + getColor());
+        System.out.println("Settet innehåller: " + this.amountOfLures + " beten och är av typen: " + this.lureType + ")");
 
+    }
+
+    @Override
+    public String getType() {
+        return "Betesset";
     }
 }

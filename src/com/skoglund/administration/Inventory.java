@@ -1,7 +1,5 @@
 package com.skoglund.administration;
 
-import com.skoglund.entity.Member;
-import com.skoglund.entity.Rental;
 import com.skoglund.entity.items.Item;
 
 import java.util.ArrayList;
@@ -21,7 +19,17 @@ public class Inventory {
         clubItems.add(item);
     }
 
-    public void removeItem(Item item){
-        clubItems.remove(item);
+    public void showItemInfo(){
+        for(Item item : clubItems){
+            item.showItemInfo();
+        }
+    }
+    public Item getItemFromInventory(String itemType){
+        for(Item item : clubItems){
+            if(item.getType().equalsIgnoreCase(itemType)){
+                return item;
+            }
+        }
+        return null;
     }
 }

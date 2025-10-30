@@ -20,4 +20,15 @@ public class Rental {
         this.rentalTime = rentalTime;
     }
 
+    public Item getItem() {
+        return item;
+    }
+
+    public void showRental(){
+        System.out.println("Bokning genomförd!");
+        System.out.println("Kund: " + member.getName() + " | " + member.getId() + " | " + member.getAgeGroup());
+        System.out.println("Uthyrningsperiod: " + rentalTime);
+        item.showItemInfo();
+    }
+
 }

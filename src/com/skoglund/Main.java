@@ -22,11 +22,11 @@ public class Main {
         Inventory inventory = new Inventory();
         RentalService rentalService = new RentalService();
 
-        inventory.addItem(new FishingRod("Svartzonker", "Svart" , "7 fot", "90-180g",
+        inventory.addItem(new FishingRod("Svartzonker", "Svart" , true, "7", "90-180",
                 "spinn"));
-        inventory.addItem(new FishingReel("Daiwa", "Svart", "6:3:1", "Spinn",
+        inventory.addItem(new FishingReel("Daiwa", "Svart", true, "6:3:1", "Spinn",
                 "16"));
-        inventory.addItem(new LureSet("Westin" , "Röd", "Swimbait"));
+        inventory.addItem(new LureSet("Westin" , "Röd", true, "Swimbait"));
 
         Scanner scanner = new Scanner(System.in);
         boolean showMenu = true;
@@ -50,13 +50,13 @@ public class Main {
                             break;
 
                     case 2:
-                        EquipmentMenuChoice menuChoice2 = new EquipmentMenuChoice();
-                        menuChoice2.showMenuChoiceEquipment();
+                        RentalMenuChoice menuChoice3 = new RentalMenuChoice();
+                        menuChoice3.showMenuChoiceRental(rentalService, inventory, memberRegistry);
+
                         break;
 
                     case 3:
-                        RentalMenuChoice menuChoice3 = new RentalMenuChoice();
-                        menuChoice3.showMenuChoiceRental(rentalService);
+
                         break;
 
                     case 4:
