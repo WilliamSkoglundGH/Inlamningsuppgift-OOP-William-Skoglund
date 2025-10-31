@@ -1,5 +1,5 @@
 package com.skoglund.price;
 
 public interface PricePolicy {
-    public double getPrice();
+    public double getPricePerDay();
 }

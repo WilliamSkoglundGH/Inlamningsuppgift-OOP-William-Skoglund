@@ -7,16 +7,10 @@ import java.util.List;
 
 public class MemberRegistry {
     private List<Member> memberList;
-    //Lista med alla medlemmar
-    //Läggs till "automatiskt" listan när en ny member skapas
 
 
     public MemberRegistry(){
         memberList = new ArrayList<>();
-    }
-
-    public List<Member> getMemberList() {
-        return memberList;
     }
 
     public void addNewMember(Member newMember){

@@ -59,8 +59,9 @@ public class RentalMenuChoice {
                                             System.out.println("Försök igen");
                                         }
                                         else{
-                                            System.out.print("Ange tidsperiod för uthyrning: ");
-                                            String rentalPeriod = scanner.nextLine();
+                                            System.out.print("Ange tidsperiod för uthyrning(antal dagar): ");
+                                            int rentalPeriod = scanner.nextInt();
+                                            scanner.nextLine();
                                             Item item = inventory.getItemFromInventory("Fiskespö");
                                             Rental newRental = rentalService.createNewRental(item, member, rentalPeriod);
                                             if(newRental == null){
@@ -90,8 +91,9 @@ public class RentalMenuChoice {
                                             System.out.println("Försök igen");
                                         }
                                         else{
-                                            System.out.print("Ange tidsperiod för uthyrning: ");
-                                            String rentalPeriod = scanner.nextLine();
+                                            System.out.print("Ange tidsperiod för uthyrning(antal dagar): ");
+                                            int rentalPeriod = scanner.nextInt();
+                                            scanner.nextLine();
                                             Item item = inventory.getItemFromInventory("Fiskerulle");
                                             Rental newRental = rentalService.createNewRental(item, member, rentalPeriod);
                                             if(newRental == null){
@@ -121,8 +123,9 @@ public class RentalMenuChoice {
                                             System.out.println("Försök igen");
                                         }
                                         else{
-                                            System.out.print("Ange tidsperiod för uthyrning: ");
-                                            String rentalPeriod = scanner.nextLine();
+                                            System.out.print("Ange tidsperiod för uthyrning(antal dagar): ");
+                                            int rentalPeriod = scanner.nextInt();
+                                            scanner.nextLine();
                                             Item item = inventory.getItemFromInventory("Betesset");
                                             Rental newRental = rentalService.createNewRental(item, member, rentalPeriod);
                                             if(newRental == null){

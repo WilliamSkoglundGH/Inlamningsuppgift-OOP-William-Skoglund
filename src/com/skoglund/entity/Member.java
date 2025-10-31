@@ -47,9 +47,6 @@ public class Member {
         return ageGroup;
     }
 
-    public List<Rental> getActiveRentals() {
-        return activeRentals;
-    }
 
     public void setName(String name) {
         this.name = name;

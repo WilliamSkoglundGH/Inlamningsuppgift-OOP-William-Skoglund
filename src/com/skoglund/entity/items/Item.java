@@ -31,10 +31,10 @@ public abstract class Item {
 
     public abstract String getType();
 
-    public void setToAvailable(){
+    public void ToAvailable(){
         this.isAvailable = true;
     }
-    public void setToNotAvailable(){
+    public void ToNotAvailable(){
         this.isAvailable = false;
     }
 }
