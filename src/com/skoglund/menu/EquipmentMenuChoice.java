@@ -1,5 +1,6 @@
 package com.skoglund.menu;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class EquipmentMenuChoice {
@@ -38,7 +39,7 @@ public class EquipmentMenuChoice {
                     default:
                         System.out.println("Heltalet du skriver in måste vara mellan 1 tom 4");
                 }
-            } catch (NumberFormatException ex) {
+            } catch (InputMismatchException ex) {
                 System.out.println("Du måste ange ett heltal!");
             }
         }while(showMenu3);

@@ -7,6 +7,7 @@ import com.skoglund.entity.Rental;
 import com.skoglund.entity.items.Item;
 import com.skoglund.service.RentalService;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class RentalMenuChoice {
@@ -34,6 +35,7 @@ public class RentalMenuChoice {
                             System.out.println("Här under visas info om klubbens utrustning:");
                             inventory.showItemInfo();
                             System.out.println("KLICKA ENTER FÖR ATT GÖRA DITT VAL AV UTRUSTNING");
+                            scanner.nextLine();
 
                             System.out.println("1) Fiskespö");
                             System.out.println("2) Fiskerulle");
@@ -41,116 +43,142 @@ public class RentalMenuChoice {
                             System.out.println("4) Spara och stäng uthyrningssidan");
                             System.out.print("Ditt val (1-4): ");
 
-                            int choice = scanner.nextInt();
-                            scanner.nextLine();
+                            try{
+                                int choice = scanner.nextInt();
+                                scanner.nextLine();
+                                switch(choice){
+                                    case 1:
+                                        boolean repeatCustomerID = true;
+                                        do{
+                                            System.out.println("Här bokar/hyr du fiskespöt");
+                                            System.out.print("Ange kund ID: ");
+                                            String ID = scanner.nextLine();
 
-
-                            switch(choice){
-                                case 1:
-                                    boolean repeatCustomerID = true;
-                                    do{
-                                        System.out.println("Här bokar/hyr du fiskespöt");
-                                        System.out.print("Ange kund ID: ");
-                                        String ID = scanner.nextLine();
-
-                                        Member member = memberRegistry.searchAndGetMember(ID);
-                                        if(member == null){
-                                            System.out.println("Det finns ingen medlem registrerad med det ID:et");
-                                            System.out.println("Försök igen");
-                                        }
-                                        else{
-                                            System.out.print("Ange tidsperiod för uthyrning(antal dagar): ");
-                                            int rentalPeriod = scanner.nextInt();
-                                            scanner.nextLine();
-                                            Item item = inventory.getItemFromInventory("Fiskespö");
-                                            Rental newRental = rentalService.createNewRental(item, member, rentalPeriod);
-                                            if(newRental == null){
-                                                System.out.println("Utrustningen är redan uthyrd!");
+                                            Member member = memberRegistry.searchAndGetMember(ID);
+                                            if(member == null){
+                                                System.out.println("Det finns ingen medlem registrerad med det ID:et");
+                                                System.out.println("Försök igen");
                                             }
                                             else{
-                                                rentalService.showRentalInfo(newRental);
-                                                System.out.println("KLICKA PÅ ENTER FÖR ATT ÅTERGÅ TILL MENYN FÖR UTHYRNINGAR");
-                                                scanner.nextLine();
-                                                repeatCustomerID = false;
+                                                System.out.print("Ange tidsperiod för uthyrning(antal dagar): ");
+                                                try{
+                                                    int rentalPeriod = scanner.nextInt();
+                                                    scanner.nextLine();
+                                                    Item item = inventory.getItemFromInventory("Fiskespö");
+                                                    Rental newRental = rentalService.createNewRental(item, member, rentalPeriod);
+                                                    if(newRental == null){
+                                                        System.out.println("Utrustningen är redan uthyrd!");
+                                                        System.out.println("KLICKA PÅ ENTER FÖR ATT ÅTERGÅ TILL MENYN");
+                                                        scanner.nextLine();
+                                                        break;
+                                                    }
+                                                    else{
+                                                        rentalService.showRentalInfo(newRental);
+                                                        System.out.println("KLICKA PÅ ENTER FÖR ATT ÅTERGÅ TILL MENYN FÖR UTHYRNINGAR");
+                                                        scanner.nextLine();
+                                                        repeatCustomerID = false;
+                                                    }
+                                                }catch (InputMismatchException ex){
+                                                    System.out.println("Du måste ange ett heltal!");
+                                                }
+
                                             }
-                                        }
-                                    }while(repeatCustomerID);
+                                        }while(repeatCustomerID);
+                                        break;
 
-                                    break;
+                                    case 2:
+                                        boolean repeatCustomerIDD = true;
+                                        do{
+                                            System.out.println("Här bokar/hyr du ut fiskerullen");
+                                            System.out.print("Ange kund ID: ");
+                                            String ID = scanner.nextLine();
 
-                                case 2:
-                                    boolean repeatCustomerIDD = true;
-                                    do{
-                                        System.out.println("Här bokar/hyr du ut fiskerullen");
-                                        System.out.print("Ange kund ID: ");
-                                        String ID = scanner.nextLine();
-
-                                        Member member = memberRegistry.searchAndGetMember(ID);
-                                        if(member == null){
-                                            System.out.println("Det finns ingen medlem registrerad med det ID:et");
-                                            System.out.println("Försök igen");
-                                        }
-                                        else{
-                                            System.out.print("Ange tidsperiod för uthyrning(antal dagar): ");
-                                            int rentalPeriod = scanner.nextInt();
-                                            scanner.nextLine();
-                                            Item item = inventory.getItemFromInventory("Fiskerulle");
-                                            Rental newRental = rentalService.createNewRental(item, member, rentalPeriod);
-                                            if(newRental == null){
-                                                System.out.println("Utrustningen är redan uthyrd!");
-                                            }
-                                            else{
-                                                rentalService.showRentalInfo(newRental);
-                                                System.out.println("KLICKA PÅ ENTER FÖR ATT ÅTERGÅ TILL MENYN FÖR UTHYRNINGAR");
-                                                scanner.nextLine();
-                                                repeatCustomerIDD = false;
-                                            }
-                                        }
-                                    }while(repeatCustomerIDD);
-
-                                    break;
-
-                                case 3:
-                                    boolean repeatCustomerIDDD = true;
-                                    do{
-                                        System.out.println("Här bokar/hyr du betessettet");
-                                        System.out.print("Ange kund ID: ");
-                                        String ID = scanner.nextLine();
-
-                                        Member member = memberRegistry.searchAndGetMember(ID);
-                                        if(member == null){
-                                            System.out.println("Det finns ingen medlem registrerad med det ID:et");
-                                            System.out.println("Försök igen");
-                                        }
-                                        else{
-                                            System.out.print("Ange tidsperiod för uthyrning(antal dagar): ");
-                                            int rentalPeriod = scanner.nextInt();
-                                            scanner.nextLine();
-                                            Item item = inventory.getItemFromInventory("Betesset");
-                                            Rental newRental = rentalService.createNewRental(item, member, rentalPeriod);
-                                            if(newRental == null){
-                                                System.out.println("Utrustningen är redan uthyrd!");
+                                            Member member = memberRegistry.searchAndGetMember(ID);
+                                            if(member == null){
+                                                System.out.println("Det finns ingen medlem registrerad med det ID:et");
+                                                System.out.println("Försök igen");
                                             }
                                             else{
-                                                rentalService.showRentalInfo(newRental);
-                                                System.out.println("KLICKA PÅ ENTER FÖR ATT ÅTERGÅ TILL MENYN FÖR UTHYRNINGAR");
-                                                scanner.nextLine();
-                                                repeatCustomerIDDD = false;
+                                                System.out.print("Ange tidsperiod för uthyrning(antal dagar): ");
+                                                try{
+                                                    int rentalPeriod = scanner.nextInt();
+                                                    scanner.nextLine();
+                                                    Item item = inventory.getItemFromInventory("Fiskerulle");
+                                                    Rental newRental = rentalService.createNewRental(item, member, rentalPeriod);
+                                                    if(newRental == null){
+                                                        System.out.println("Utrustningen är redan uthyrd!");
+                                                        System.out.println("KLICKA PÅ ENTER FÖR ATT ÅTERGÅ TILL MENYN");
+                                                        scanner.nextLine();
+                                                        break;
+                                                    }
+                                                    else{
+                                                        rentalService.showRentalInfo(newRental);
+                                                        System.out.println("KLICKA PÅ ENTER FÖR ATT ÅTERGÅ TILL MENYN FÖR UTHYRNINGAR");
+                                                        scanner.nextLine();
+                                                        repeatCustomerIDD = false;
+                                                    }
+                                                }catch(InputMismatchException ex){
+                                                    System.out.println("Du måste ange ett heltal!");
+
+                                                }
+
                                             }
-                                        }
-                                    }while(repeatCustomerIDDD);
-                                    break;
+                                        }while(repeatCustomerIDD);
+                                        break;
 
-                                case 4:
-                                    System.out.println("Bokning/ar sparas, du återgår till menyn!");
-                                    showBookingMenu = false;
-                                    break;
+                                    case 3:
+                                        boolean repeatCustomerIDDD = true;
+                                        do{
+                                            System.out.println("Här bokar/hyr du betessettet");
+                                            System.out.print("Ange kund ID: ");
+                                            String ID = scanner.nextLine();
 
-                                default:
-                                    System.out.println("Heltalet du anger måste vara mellan 1 tom 4");
-                                    break;
+                                            Member member = memberRegistry.searchAndGetMember(ID);
+                                            if(member == null){
+                                                System.out.println("Det finns ingen medlem registrerad med det ID:et");
+                                                System.out.println("Försök igen");
+                                            }
+                                            else{
+                                                System.out.print("Ange tidsperiod för uthyrning(antal dagar): ");
+                                                try{
+                                                    int rentalPeriod = scanner.nextInt();
+                                                    scanner.nextLine();
+                                                    Item item = inventory.getItemFromInventory("Betesset");
+                                                    Rental newRental = rentalService.createNewRental(item, member, rentalPeriod);
+                                                    if(newRental == null){
+                                                        System.out.println("Utrustningen är redan uthyrd!");
+                                                        System.out.println("KLICKA PÅ ENTER FÖR ATT ÅTERGÅ TILL MENYN");
+                                                        scanner.nextLine();
+                                                        break;
+                                                    }
+                                                    else{
+                                                        rentalService.showRentalInfo(newRental);
+                                                        System.out.println("KLICKA PÅ ENTER FÖR ATT ÅTERGÅ TILL MENYN FÖR UTHYRNINGAR");
+                                                        scanner.nextLine();
+                                                        repeatCustomerIDDD = false;
+                                                    }
+                                                }catch(InputMismatchException ex){
+                                                    System.out.println("Du måste ange ett heltal!");
+                                                }
+
+                                            }
+                                        }while(repeatCustomerIDDD);
+                                        break;
+
+                                    case 4:
+                                        System.out.println("Bokning/ar sparas, du återgår till menyn!");
+                                        showBookingMenu = false;
+                                        break;
+
+                                    default:
+                                        System.out.println("Heltalet du anger måste vara mellan 1 tom 4");
+                                        break;
+                                }
+                            }catch(InputMismatchException ex){
+                                System.out.println("Du måste ange ett heltal!");
+
                             }
-                        }while(showBookingMenu);
+                            }while(showBookingMenu);
                         break;
 
                     case 2:
@@ -181,26 +209,30 @@ public class RentalMenuChoice {
                     case 3:
                         System.out.println("Här visar du en medlems pågående uthyrningar");
                         System.out.println("Ange ID för medlemmen:");
-                        String Id = scanner.nextLine();
-                        Member member1 = memberRegistry.searchAndGetMember(Id);
+                        String id = scanner.nextLine();
+                        Member member1 = memberRegistry.searchAndGetMember(id);
                         if(member1 == null){
                             System.out.println("Det finns ingen registrerad medlem med det ID:et");
                         }
                         else{
                             member1.showActiveRentals();
+                            System.out.println("KLICKA ENTER FÖR ATT ÅTERGÅ TILL MENYN!");
+                            scanner.nextLine();
                         }
                         break;
 
                     case 4:
                         System.out.println("Här visar du en medlems uthyrningshistorik");
                         System.out.println("Ange ID för medlemmen:");
-                        String id = scanner.nextLine();
-                        Member member2 = memberRegistry.searchAndGetMember(id);
+                        String memberId = scanner.nextLine();
+                        Member member2 = memberRegistry.searchAndGetMember(memberId);
                         if(member2 == null){
                             System.out.println("Det finns ingen registrerad medlem med det ID:et");
                         }
                         else{
                             member2.showRentalHistory();
+                            System.out.println("KLICKA ENTER FÖR ATT ÅTERGÅ TILL MENYN!");
+                            scanner.nextLine();
                         }
                         break;
 
@@ -212,7 +244,7 @@ public class RentalMenuChoice {
                     default:
                         System.out.println("Heltalet du skriver in måste vara mellan 1 tom 4");
                 }
-            } catch (NumberFormatException ex) {
+            } catch (InputMismatchException ex) {
                 System.out.println("Du måste ange ett heltal!");
             }
 

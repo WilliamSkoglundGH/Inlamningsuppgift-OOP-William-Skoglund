@@ -62,12 +62,14 @@ public class Member {
 
     public void addNewRental(Rental rental){
         activeRentals.add(rental);
-        rentalHistory.add("Ny bokning: | Utrustning: " + rental.item + " | Uthyrningsperiod: " + rental.rentalTime);
+        rentalHistory.add("Ny bokning: | Utrustning: " + rental.item.getType() +
+                " | Uthyrningsperiod: " + rental.rentalTime + "dag/dagar");
     }
 
     public void finishRental(Rental rental){
         activeRentals.remove(rental);
-        rentalHistory.add("Avslutad bokning: | Utrustning: " + rental.item + " | Uthyrningsperiod: " + rental.rentalTime);
+        rentalHistory.add("Avslutad bokning: | Utrustning: " + rental.item.getType() + " " +
+                "| Uthyrningsperiod: " + rental.rentalTime + "dag/dagar");
     }
 
     public void showRentalHistory(){
@@ -77,7 +79,8 @@ public class Member {
     }
     public void showActiveRentals(){
         for(Rental rental : activeRentals){
-            System.out.println(rental.item + " | " + rental.rentalTime + "| " + rental.rentalTime);
+            System.out.println("Utrustning: " + rental.item.getType() + " | Uthyrningsperiod: " + rental.rentalTime +
+                    " dag/dagar");
         }
     }
     public Rental getSpecificRental(String itemType){

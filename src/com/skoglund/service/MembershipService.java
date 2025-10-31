@@ -31,8 +31,6 @@ public class MembershipService {
     }
 
 
-    //public void sortMembersByAge();
-
 }
 
 

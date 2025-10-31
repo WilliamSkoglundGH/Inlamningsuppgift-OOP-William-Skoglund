@@ -41,7 +41,7 @@ public class RentalService {
     }
 
     public void showRentalInfo(Rental rental){
-        System.out.println(rental.getRentalInfo() + "Pris: " + calculateRentalPrice(rental, rental.getMember()) + "kr");
+        System.out.println(rental.getRentalInfo() + " Pris: " + calculateRentalPrice(rental, rental.getMember()) + "kr");
     }
      public PricePolicy getMemberPricePolicy(Rental rental, Member member){
         String memberAgeGroup = member.getAgeGroup();
