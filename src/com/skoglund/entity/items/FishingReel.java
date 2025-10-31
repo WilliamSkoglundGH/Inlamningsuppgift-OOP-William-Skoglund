@@ -8,9 +8,9 @@ public class FishingReel extends Item{
     public FishingReel(){
 
     }
-    public FishingReel(String brand, String color, String gearRatio,
+    public FishingReel(String brand, String color, boolean isAvailable, String gearRatio,
                        String reelType, String maxDrag){
-        super(brand, color);
+        super(brand, color,isAvailable);
         this.gearRatio = gearRatio;
         this.reelType = reelType;
         this.maxDrag = maxDrag;
@@ -19,8 +19,13 @@ public class FishingReel extends Item{
 
     @Override
     public void showItemInfo() {
-        System.out.println("Fiskerulle av varumärket: " + getBrand() + " | Färg: " + getColor());
+        System.out.println("(Fiskerulle av varumärket: " + getBrand() + " | Färg: " + getColor());
         System.out.println("Rullen är en: " + this.reelType + " med utväxlingen " + this.gearRatio +
-                " och en maxbroms på: " + this.maxDrag + "kg");
+                " och en maxbroms på: " + this.maxDrag + "kg)");
+    }
+
+    @Override
+    public String getType() {
+        return "Fiskerulle";
     }
 }

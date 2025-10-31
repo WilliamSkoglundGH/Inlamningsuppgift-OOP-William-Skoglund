@@ -1,10 +1,15 @@
 package com.skoglund;
 
+import com.skoglund.administration.Inventory;
 import com.skoglund.administration.MemberRegistry;
+import com.skoglund.entity.items.FishingReel;
+import com.skoglund.entity.items.FishingRod;
+import com.skoglund.entity.items.LureSet;
 import com.skoglund.menu.EquipmentMenuChoice;
 import com.skoglund.menu.MembershipMenuChoice;
 import com.skoglund.menu.RentalMenuChoice;
 import com.skoglund.service.MembershipService;
+import com.skoglund.service.RentalService;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -13,6 +18,15 @@ public class Main {
     public static void main(String[] args){
         MemberRegistry memberRegistry = new MemberRegistry();
         MembershipService membershipService = new MembershipService(memberRegistry);
+
+        Inventory inventory = new Inventory();
+        RentalService rentalService = new RentalService();
+
+        inventory.addItem(new FishingRod("Svartzonker", "Svart" , true, "7", "90-180",
+                "spinn"));
+        inventory.addItem(new FishingReel("Daiwa", "Svart", true, "6:3:1", "Spinn",
+                "16"));
+        inventory.addItem(new LureSet("Westin" , "Röd", true, "Swimbait"));
 
         Scanner scanner = new Scanner(System.in);
         boolean showMenu = true;
@@ -36,13 +50,13 @@ public class Main {
                             break;
 
                     case 2:
-                        EquipmentMenuChoice menuChoice2 = new EquipmentMenuChoice();
-                        menuChoice2.showMenuChoiceEquipment();
+                        RentalMenuChoice menuChoice3 = new RentalMenuChoice();
+                        menuChoice3.showMenuChoiceRental(rentalService, inventory, memberRegistry);
+
                         break;
 
                     case 3:
-                        RentalMenuChoice menuChoice3 = new RentalMenuChoice();
-                        menuChoice3.showMenuChoiceRental();
+
                         break;
 
                     case 4:

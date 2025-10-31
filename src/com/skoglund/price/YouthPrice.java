@@ -1,9 +1,8 @@
 package com.skoglund.price;
 
-public class ChildPrice implements PricePolicy{
+public class YouthPrice implements PricePolicy{
     @Override
     public double getPricePerDay() {
-        return 250;
-
+        return 400;
     }
 }

@@ -1,14 +1,15 @@
 package com.skoglund.entity;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Member {
     private String name;
     private String Id;
     private String ageGroup;
-    //ID ska ges automatiskt vid skapande av member
-    //private List<Rental>;
-    //Agegroup agegroup ---- barn,ungdom,vuxen,pensionär
+    private List<Rental> activeRentals;
+    private List<String> rentalHistory;
 
     Random random = new Random();
     StringBuilder stringBuilder = new StringBuilder();
@@ -21,6 +22,9 @@ public class Member {
         this.name = name;
         this.ageGroup = ageGroup;
         this.Id = createID();
+        activeRentals = new ArrayList<>();
+        rentalHistory = new ArrayList<>();
+        rentalHistory.add("Uthyrningshistorik för: " + this.name + " | " + this.Id + " | " + this.ageGroup);
     }
 
     private String createID(){
@@ -43,6 +47,7 @@ public class Member {
         return ageGroup;
     }
 
+
     public void setName(String name) {
         this.name = name;
     }
@@ -55,10 +60,35 @@ public class Member {
         this.ageGroup = ageGroup;
     }
 
-    public void showRentalHistory(){
+    public void addNewRental(Rental rental){
+        activeRentals.add(rental);
+        rentalHistory.add("Ny bokning: | Utrustning: " + rental.item.getType() +
+                " | Uthyrningsperiod: " + rental.rentalTime + "dag/dagar");
+    }
 
+    public void finishRental(Rental rental){
+        activeRentals.remove(rental);
+        rentalHistory.add("Avslutad bokning: | Utrustning: " + rental.item.getType() + " " +
+                "| Uthyrningsperiod: " + rental.rentalTime + "dag/dagar");
+    }
+
+    public void showRentalHistory(){
+        for(String history : rentalHistory){
+            System.out.println(history);
+        }
     }
     public void showActiveRentals(){
-
+        for(Rental rental : activeRentals){
+            System.out.println("Utrustning: " + rental.item.getType() + " | Uthyrningsperiod: " + rental.rentalTime +
+                    " dag/dagar");
+        }
+    }
+    public Rental getSpecificRental(String itemType){
+        for(Rental rental : activeRentals){
+            if(rental.item.getType().equalsIgnoreCase(itemType)){
+                return rental;
+            }
+        }
+        return null;
     }
 }
