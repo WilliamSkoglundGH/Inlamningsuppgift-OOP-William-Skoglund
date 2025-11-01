@@ -7,9 +7,6 @@ import java.util.List;
 
 public class Inventory {
     List<Item> clubItems;
-    //Lista med alla items i klubben, oavsett uthyrning, vad har klubben för items
-    //Lista med alla pågående uthyrningar
-    //Historik av alla uthyrningar(någonsin) uthyrningar + återlämningar + datum för de
 
     public Inventory(){
         clubItems = new ArrayList<>();
@@ -31,5 +28,20 @@ public class Inventory {
             }
         }
         return null;
+    }
+    public void showAvailableItems(){
+        for(Item item : clubItems){
+            if(item.isAvailable()){
+                item.showItemInfo();
+            }
+        }
+    }
+
+    public void showRentedItems(){
+        for(Item item : clubItems){
+            if(!item.isAvailable()){
+                item.showItemInfo();
+            }
+        }
     }
 }

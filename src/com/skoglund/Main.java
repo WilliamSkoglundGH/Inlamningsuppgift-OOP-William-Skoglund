@@ -42,7 +42,6 @@ public class Main {
 
             try{
                 int menuChoice = scanner.nextInt();
-                scanner.nextLine();
                 switch(menuChoice){
                         case 1:
                             MembershipMenuChoice menuChoice1 = new MembershipMenuChoice();
@@ -50,13 +49,14 @@ public class Main {
                             break;
 
                     case 2:
-                        RentalMenuChoice menuChoice3 = new RentalMenuChoice();
-                        menuChoice3.showMenuChoiceRental(rentalService, inventory, memberRegistry);
+                        RentalMenuChoice menuChoice2 = new RentalMenuChoice();
+                        menuChoice2.showMenuChoiceRental(rentalService, inventory, memberRegistry);
 
                         break;
 
                     case 3:
-
+                        EquipmentMenuChoice menuChoice3 = new EquipmentMenuChoice();
+                        menuChoice3.showMenuChoiceEquipment(inventory);
                         break;
 
                     case 4:
