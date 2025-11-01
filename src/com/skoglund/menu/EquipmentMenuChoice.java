@@ -11,7 +11,7 @@ public class EquipmentMenuChoice {
         Scanner scanner = new Scanner(System.in);
         boolean showMenu3 = true;
         do {
-            System.out.println("Här hanterar du klubbens uthyrningsmaterial!");
+            System.out.println("Här hanterar du klubbens material!");
             System.out.println("1) Visa klubbens material");
             System.out.println("2) Visa material tillgängligt för uthyrning");
             System.out.println("3) Visa uthyrt material");
@@ -49,6 +49,9 @@ public class EquipmentMenuChoice {
                 scanner.nextLine();
             } catch (InputMismatchException ex) {
                 System.out.println("Du måste ange ett heltal!");
+                System.out.println("Klicka ENTER för att återgå till materialmenyn och försök igen!");
+                scanner.nextLine(); //rensar felaktiga värdet från scannern
+                scanner.nextLine(); //väntar på ENTER
             }
         }while(showMenu3);
     }

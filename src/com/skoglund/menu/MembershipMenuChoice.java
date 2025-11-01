@@ -105,15 +105,16 @@ public class MembershipMenuChoice {
                                             showChangeMenu = false;
                                             continue;
 
-                                        default:{
-                                            System.out.println("Heltalet du anger måste vara mellan 1-4");
-                                        }
-
+                                        default:
+                                            System.out.println("Heltalet måste vara mellan 1-4");
                                     }
                                     System.out.println("KLICKA ENTER FÖR ATT ÅTERGÅ TILL MENYN!");
                                     scanner.nextLine();
                                 }catch(InputMismatchException ex){
-                                    System.out.println("Du måste ange ett heltal");
+                                    System.out.println("Du måste ange ett heltal!");
+                                    System.out.println("Klicka ENTER för att återgå till ändringsmenyn och försök igen!");
+                                    scanner.nextLine(); //rensar felaktiga värdet från scannern
+                                    scanner.nextLine(); //väntar på ENTER
                                 }
 
                             }while(showChangeMenu);
@@ -121,7 +122,7 @@ public class MembershipMenuChoice {
 
                         }
                         else if (changeOrNot.equalsIgnoreCase("nej")){
-                            System.out.println("Du skickas tillbaks till menyn för menyval1");
+                            System.out.println("Du skickas tillbaks till menyn");
                         }
                         break;
 
@@ -141,6 +142,9 @@ public class MembershipMenuChoice {
                 scanner.nextLine();
             } catch (InputMismatchException ex) {
                 System.out.println("Du måste ange ett heltal!");
+                System.out.println("Klicka ENTER för att återgå till medlemsmenyn och försök igen!");
+                scanner.nextLine(); //rensar felaktiga värdet från scannern
+                scanner.nextLine(); //väntar på ENTER
             }
         }while(showMenu1);
     }

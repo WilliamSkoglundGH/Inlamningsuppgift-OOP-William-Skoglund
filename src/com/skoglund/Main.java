@@ -42,6 +42,7 @@ public class Main {
 
             try{
                 int menuChoice = scanner.nextInt();
+                scanner.nextLine();
                 switch(menuChoice){
                         case 1:
                             MembershipMenuChoice menuChoice1 = new MembershipMenuChoice();
@@ -60,7 +61,7 @@ public class Main {
                         break;
 
                     case 4:
-                        //Visa intäkter
+                        System.out.println(rentalService.calculateIncomeFromRentals() + "kr");
                         break;
 
                     case 5:
@@ -74,9 +75,9 @@ public class Main {
                 }
             }catch (InputMismatchException ex){
                 System.out.println("Du måste ange ett heltal!");
-            }
-            finally{
-                scanner.nextLine();
+                System.out.println("Klicka ENTER för att återgå till startsidan och försök igen!");
+                scanner.nextLine(); //rensar felaktiga värdet från scannern
+                scanner.nextLine(); //väntar på ENTER
             }
         }while(showMenu);
 

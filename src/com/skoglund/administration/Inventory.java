@@ -30,6 +30,9 @@ public class Inventory {
         return null;
     }
     public void showAvailableItems(){
+        if(amountOfAvailableItems() == 0){
+            System.out.println("All utrustning är uthyrd!");
+        }
         for(Item item : clubItems){
             if(item.isAvailable()){
                 item.showItemInfo();
@@ -38,10 +41,22 @@ public class Inventory {
     }
 
     public void showRentedItems(){
+        if(amountOfAvailableItems() == clubItems.size()){
+            System.out.println("Ingen utrustning är uthyrd!");
+        }
         for(Item item : clubItems){
             if(!item.isAvailable()){
                 item.showItemInfo();
             }
         }
+    }
+    public int amountOfAvailableItems(){
+        int amount = 0;
+        for(Item item : clubItems){
+            if(item.isAvailable()){
+                amount++;
+            }
+        }
+        return amount;
     }
 }

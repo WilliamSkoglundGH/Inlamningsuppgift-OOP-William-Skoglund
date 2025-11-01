@@ -79,7 +79,10 @@ public class RentalMenuChoice {
                                                         repeatCustomerID = false;
                                                     }
                                                 }catch (InputMismatchException ex){
-                                                    System.out.println("Du måste ange ett heltal!");
+                                                    System.out.println("Du måste ange dagar som ett heltal!");
+                                                    System.out.println("Klicka ENTER för att göra om bokning!");
+                                                    scanner.nextLine(); //rensar felaktiga värdet från scannern
+                                                    scanner.nextLine(); //väntar på ENTER
                                                 }
 
                                             }
@@ -118,7 +121,10 @@ public class RentalMenuChoice {
                                                         repeatCustomerIDD = false;
                                                     }
                                                 }catch(InputMismatchException ex){
-                                                    System.out.println("Du måste ange ett heltal!");
+                                                    System.out.println("Du måste ange dagar som ett heltal!");
+                                                    System.out.println("Klicka ENTER för att göra om bokning!");
+                                                    scanner.nextLine(); //rensar felaktiga värdet från scannern
+                                                    scanner.nextLine(); //väntar på ENTER
 
                                                 }
 
@@ -158,7 +164,10 @@ public class RentalMenuChoice {
                                                         repeatCustomerIDDD = false;
                                                     }
                                                 }catch(InputMismatchException ex){
-                                                    System.out.println("Du måste ange ett heltal!");
+                                                    System.out.println("Du måste ange dagar som ett heltal!");
+                                                    System.out.println("Klicka ENTER för att göra om bokning!");
+                                                    scanner.nextLine(); //rensar felaktiga värdet från scannern
+                                                    scanner.nextLine(); //väntar på ENTER
                                                 }
 
                                             }
@@ -176,6 +185,9 @@ public class RentalMenuChoice {
                                 }
                             }catch(InputMismatchException ex){
                                 System.out.println("Du måste ange ett heltal!");
+                                System.out.println("Klicka ENTER för att återgå till val av utrustning och försök igen!");
+                                scanner.nextLine(); //rensar felaktiga värdet från scannern
+                                scanner.nextLine(); //väntar på ENTER
 
                             }
                             }while(showBookingMenu);
@@ -246,6 +258,9 @@ public class RentalMenuChoice {
                 }
             } catch (InputMismatchException ex) {
                 System.out.println("Du måste ange ett heltal!");
+                System.out.println("Klicka ENTER för att återgå till uthyrningsmenyn och försök igen!");
+                scanner.nextLine(); //rensar felaktiga värdet från scannern
+                scanner.nextLine(); //väntar på ENTER
             }
 
         }while(showMenu);
