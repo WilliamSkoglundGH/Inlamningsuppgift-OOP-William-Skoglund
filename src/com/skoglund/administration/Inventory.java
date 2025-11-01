@@ -33,9 +33,11 @@ public class Inventory {
         if(amountOfAvailableItems() == 0){
             System.out.println("All utrustning är uthyrd!");
         }
-        for(Item item : clubItems){
-            if(item.isAvailable()){
-                item.showItemInfo();
+        else{
+            for(Item item : clubItems){
+                if(item.isAvailable()){
+                    item.showItemInfo();
+                }
             }
         }
     }
@@ -44,9 +46,11 @@ public class Inventory {
         if(amountOfAvailableItems() == clubItems.size()){
             System.out.println("Ingen utrustning är uthyrd!");
         }
-        for(Item item : clubItems){
-            if(!item.isAvailable()){
-                item.showItemInfo();
+        else{
+            for(Item item : clubItems){
+                if(!item.isAvailable()){
+                    item.showItemInfo();
+                }
             }
         }
     }
