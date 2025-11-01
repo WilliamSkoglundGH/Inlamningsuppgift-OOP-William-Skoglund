@@ -7,9 +7,6 @@ import java.util.List;
 
 public class Inventory {
     List<Item> clubItems;
-    //Lista med alla items i klubben, oavsett uthyrning, vad har klubben för items
-    //Lista med alla pågående uthyrningar
-    //Historik av alla uthyrningar(någonsin) uthyrningar + återlämningar + datum för de
 
     public Inventory(){
         clubItems = new ArrayList<>();
@@ -31,5 +28,35 @@ public class Inventory {
             }
         }
         return null;
+    }
+    public void showAvailableItems(){
+        if(amountOfAvailableItems() == 0){
+            System.out.println("All utrustning är uthyrd!");
+        }
+        for(Item item : clubItems){
+            if(item.isAvailable()){
+                item.showItemInfo();
+            }
+        }
+    }
+
+    public void showRentedItems(){
+        if(amountOfAvailableItems() == clubItems.size()){
+            System.out.println("Ingen utrustning är uthyrd!");
+        }
+        for(Item item : clubItems){
+            if(!item.isAvailable()){
+                item.showItemInfo();
+            }
+        }
+    }
+    public int amountOfAvailableItems(){
+        int amount = 0;
+        for(Item item : clubItems){
+            if(item.isAvailable()){
+                amount++;
+            }
+        }
+        return amount;
     }
 }

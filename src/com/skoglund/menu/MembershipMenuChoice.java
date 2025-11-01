@@ -44,8 +44,6 @@ public class MembershipMenuChoice {
                             }
                             else{
                                 membershipService.addMember(new Member(name, ageGroup));
-                                System.out.println("KLICKA ENTER FÖR ATT ÅTERGÅ TILL MENYN!");
-                                scanner.nextLine();
                                 repeatAgeGroup = false;
                             }
                         }while(repeatAgeGroup);
@@ -83,8 +81,6 @@ public class MembershipMenuChoice {
                                             String newName = scanner.nextLine();
                                             memberForChange.setName(newName);
                                             System.out.println("Namn ändrat, nytt namn: " + newName);
-                                            System.out.println("KLICKA ENTER FÖR ATT ÅTERGÅ TILL MENYN!");
-                                            scanner.nextLine();
                                             break;
 
                                         case 2:
@@ -93,8 +89,6 @@ public class MembershipMenuChoice {
                                             String newID = scanner.nextLine();
                                             memberForChange.setId(newID);
                                             System.out.println("ID ändrat, nytt ID: " + newID);
-                                            System.out.println("KLICKA ENTER FÖR ATT ÅTERGÅ TILL MENYN!");
-                                            scanner.nextLine();
                                             break;
 
                                         case 3:
@@ -103,23 +97,24 @@ public class MembershipMenuChoice {
                                             String newAgeGroup = scanner.nextLine();
                                             memberForChange.setAgeGroup(newAgeGroup);
                                             System.out.println("Åldersgrupp ändrat, ny åldersgrupp: " + newAgeGroup);
-                                            System.out.println("KLICKA ENTER FÖR ATT ÅTERGÅ TILL MENYN!");
-                                            scanner.nextLine();
                                             break;
 
 
                                         case 4:
                                             System.out.println("Menyn stängs!");
                                             showChangeMenu = false;
-                                            break;
+                                            continue;
 
-                                        default:{
-                                            System.out.println("Heltalet du anger måste vara mellan 1-4");
-                                        }
-
+                                        default:
+                                            System.out.println("Heltalet måste vara mellan 1-4");
                                     }
+                                    System.out.println("KLICKA ENTER FÖR ATT ÅTERGÅ TILL MENYN!");
+                                    scanner.nextLine();
                                 }catch(InputMismatchException ex){
-                                    System.out.println("Du måste ange ett heltal");
+                                    System.out.println("Du måste ange ett heltal!");
+                                    System.out.println("Klicka ENTER för att återgå till ändringsmenyn och försök igen!");
+                                    scanner.nextLine(); //rensar felaktiga värdet från scannern
+                                    scanner.nextLine(); //väntar på ENTER
                                 }
 
                             }while(showChangeMenu);
@@ -127,7 +122,7 @@ public class MembershipMenuChoice {
 
                         }
                         else if (changeOrNot.equalsIgnoreCase("nej")){
-                            System.out.println("Du skickas tillbaks till menyn för menyval1");
+                            System.out.println("Du skickas tillbaks till menyn");
                         }
                         break;
 
@@ -143,8 +138,13 @@ public class MembershipMenuChoice {
                     default:
                         System.out.println("Heltalet du skriver in måste vara mellan 1 tom 4");
                 }
+                System.out.println("KLICKA ENTER FÖR ATT ÅTERGÅ TILL MENYN!");
+                scanner.nextLine();
             } catch (InputMismatchException ex) {
                 System.out.println("Du måste ange ett heltal!");
+                System.out.println("Klicka ENTER för att återgå till medlemsmenyn och försök igen!");
+                scanner.nextLine(); //rensar felaktiga värdet från scannern
+                scanner.nextLine(); //väntar på ENTER
             }
         }while(showMenu1);
     }

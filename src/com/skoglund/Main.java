@@ -50,17 +50,18 @@ public class Main {
                             break;
 
                     case 2:
-                        RentalMenuChoice menuChoice3 = new RentalMenuChoice();
-                        menuChoice3.showMenuChoiceRental(rentalService, inventory, memberRegistry);
+                        RentalMenuChoice menuChoice2 = new RentalMenuChoice();
+                        menuChoice2.showMenuChoiceRental(rentalService, inventory, memberRegistry);
 
                         break;
 
                     case 3:
-
+                        EquipmentMenuChoice menuChoice3 = new EquipmentMenuChoice();
+                        menuChoice3.showMenuChoiceEquipment(inventory);
                         break;
 
                     case 4:
-                        //Visa intäkter
+                        System.out.println(rentalService.calculateIncomeFromRentals() + "kr");
                         break;
 
                     case 5:
@@ -74,9 +75,9 @@ public class Main {
                 }
             }catch (InputMismatchException ex){
                 System.out.println("Du måste ange ett heltal!");
-            }
-            finally{
-                scanner.nextLine();
+                System.out.println("Klicka ENTER för att återgå till startsidan och försök igen!");
+                scanner.nextLine(); //rensar felaktiga värdet från scannern
+                scanner.nextLine(); //väntar på ENTER
             }
         }while(showMenu);
 
