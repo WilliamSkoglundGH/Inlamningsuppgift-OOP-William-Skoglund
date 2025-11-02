@@ -19,9 +19,9 @@ public class EquipmentMenuChoice {
             System.out.print("Gör ditt val (1-4): ");
 
             try {
-                int menu2Choice = scanner.nextInt();
+                int menuChoice = scanner.nextInt();
                 scanner.nextLine();
-                switch(menu2Choice){
+                switch(menuChoice){
                     case 1:
                         System.out.println("Här under visas klubbens utrustning");
                         inventory.showItemInfo();

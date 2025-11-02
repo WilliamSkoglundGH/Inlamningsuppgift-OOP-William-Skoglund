@@ -22,6 +22,10 @@ public class Main {
         Inventory inventory = new Inventory();
         RentalService rentalService = new RentalService();
 
+        MembershipMenuChoice menuChoice1 = new MembershipMenuChoice();
+        RentalMenuChoice menuChoice2 = new RentalMenuChoice();
+        EquipmentMenuChoice menuChoice3 = new EquipmentMenuChoice();
+
         inventory.addItem(new FishingRod("Svartzonker", "Svart" , true, "7", "90-180",
                 "spinn"));
         inventory.addItem(new FishingReel("Daiwa", "Svart", true, "6:3:1", "Spinn",
@@ -45,23 +49,21 @@ public class Main {
                 scanner.nextLine();
                 switch(menuChoice){
                         case 1:
-                            MembershipMenuChoice menuChoice1 = new MembershipMenuChoice();
                             menuChoice1.showMenuChoiceMembership(memberRegistry, membershipService);
                             break;
 
                     case 2:
-                        RentalMenuChoice menuChoice2 = new RentalMenuChoice();
                         menuChoice2.showMenuChoiceRental(rentalService, inventory, memberRegistry);
-
                         break;
 
                     case 3:
-                        EquipmentMenuChoice menuChoice3 = new EquipmentMenuChoice();
                         menuChoice3.showMenuChoiceEquipment(inventory);
                         break;
 
                     case 4:
-                        System.out.println(rentalService.calculateIncomeFromRentals() + "kr");
+                        System.out.println("Intäkter: " + rentalService.calculateIncomeFromRentals() + "kr");
+                        System.out.println("KLICKA ENTER FÖR ATT ÅTERGÅ TILL STARTSIDAN!");
+                        scanner.nextLine();
                         break;
 
                     case 5:

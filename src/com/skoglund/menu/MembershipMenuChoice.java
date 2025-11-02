@@ -54,75 +54,80 @@ public class MembershipMenuChoice {
 
                         System.out.print("Ange medlemsID: ");
                         String ID = scanner.nextLine();
-
-                        membershipService.searchAndDisplayMember(ID);
-
-                        System.out.println("Vill du ändra denna medlems uppgifter?(ja/nej): ");
-                        String changeOrNot = scanner.nextLine();
-
-                        if(changeOrNot.equalsIgnoreCase("ja")){
-                            Member memberForChange = membershipService.searchAndGetMember(ID);
-                            boolean showChangeMenu = true;
-                            do{
-                                System.out.println("1) Ändra namn");
-                                System.out.println("2) Ändra ID");
-                                System.out.println("3) Ändra åldersgrupp");
-                                System.out.println("4) Stäng menyn!");
-                                System.out.print("Ditt val: ");
-
-                                try{
-                                    int choice = scanner.nextInt();
-                                    scanner.nextLine();
-
-                                    switch(choice){
-                                        case 1:
-                                            System.out.println("1) Ändra namn");
-                                            System.out.print("Ange nytt namn: ");
-                                            String newName = scanner.nextLine();
-                                            memberForChange.setName(newName);
-                                            System.out.println("Namn ändrat, nytt namn: " + newName);
-                                            break;
-
-                                        case 2:
-                                            System.out.println("2) Ändra ID");
-                                            System.out.print("Ange nytt ID: ");
-                                            String newID = scanner.nextLine();
-                                            memberForChange.setId(newID);
-                                            System.out.println("ID ändrat, nytt ID: " + newID);
-                                            break;
-
-                                        case 3:
-                                            System.out.println("3) Ändra åldersgrupp");
-                                            System.out.print("Ange ny åldersgrupp(barn,ungdom,vuxen,pensionär): ");
-                                            String newAgeGroup = scanner.nextLine();
-                                            memberForChange.setAgeGroup(newAgeGroup);
-                                            System.out.println("Åldersgrupp ändrat, ny åldersgrupp: " + newAgeGroup);
-                                            break;
-
-
-                                        case 4:
-                                            System.out.println("Menyn stängs!");
-                                            showChangeMenu = false;
-                                            continue;
-
-                                        default:
-                                            System.out.println("Heltalet måste vara mellan 1-4");
-                                    }
-                                    System.out.println("KLICKA ENTER FÖR ATT ÅTERGÅ TILL MENYN!");
-                                    scanner.nextLine();
-                                }catch(InputMismatchException ex){
-                                    System.out.println("Du måste ange ett heltal!");
-                                    System.out.println("Klicka ENTER för att återgå till ändringsmenyn och försök igen!");
-                                    scanner.nextLine(); //rensar felaktiga värdet från scannern
-                                    scanner.nextLine(); //väntar på ENTER
-                                }
-
-                            }while(showChangeMenu);
-
-
+                        if(membershipService.searchAndGetMember(ID) == null){
+                            System.out.println("Ingen medlem med detta ID är registrerad!");
                         }
-                        else if (changeOrNot.equalsIgnoreCase("nej")){
-                            System.out.println("Du skickas tillbaks till menyn");
+                        else{
+                            membershipService.searchAndDisplayMember(ID);
+
+                            System.out.println("Vill du ändra denna medlems uppgifter?(ja/nej): ");
+                            String changeOrNot = scanner.nextLine();
+
+                            if(changeOrNot.equalsIgnoreCase("ja")){
+                                Member memberForChange = membershipService.searchAndGetMember(ID);
+                                boolean showChangeMenu = true;
+                                do{
+                                    System.out.println("1) Ändra namn");
+                                    System.out.println("2) Ändra ID");
+                                    System.out.println("3) Ändra åldersgrupp");
+                                    System.out.println("4) Stäng menyn!");
+                                    System.out.print("Ditt val: ");
+
+                                    try{
+                                        int choice = scanner.nextInt();
+                                        scanner.nextLine();
+
+                                        switch(choice){
+                                            case 1:
+                                                System.out.println("1) Ändra namn");
+                                                System.out.print("Ange nytt namn: ");
+                                                String newName = scanner.nextLine();
+                                                memberForChange.setName(newName);
+                                                System.out.println("Namn ändrat, nytt namn: " + newName);
+                                                break;
+
+                                            case 2:
+                                                System.out.println("2) Ändra ID");
+                                                System.out.print("Ange nytt ID: ");
+                                                String newID = scanner.nextLine();
+                                                memberForChange.setId(newID);
+                                                System.out.println("ID ändrat, nytt ID: " + newID);
+                                                break;
+
+                                            case 3:
+                                                System.out.println("3) Ändra åldersgrupp");
+                                                System.out.print("Ange ny åldersgrupp(barn,ungdom,vuxen,pensionär): ");
+                                                String newAgeGroup = scanner.nextLine();
+                                                memberForChange.setAgeGroup(newAgeGroup);
+                                                System.out.println("Åldersgrupp ändrat, ny åldersgrupp: " + newAgeGroup);
+                                                break;
+
+
+                                            case 4:
+                                                System.out.println("Menyn stängs!");
+                                                showChangeMenu = false;
+                                                continue;
+
+                                            default:
+                                                System.out.println("Heltalet måste vara mellan 1-4");
+                                        }
+                                        System.out.println("KLICKA ENTER FÖR ATT ÅTERGÅ TILL MENYN!");
+                                        scanner.nextLine();
+                                    }catch(InputMismatchException ex){
+                                        System.out.println("Du måste ange ett heltal!");
+                                        System.out.println("Klicka ENTER för att återgå till ändringsmenyn och försök igen!");
+                                        scanner.nextLine(); //rensar felaktiga värdet från scannern
+                                        scanner.nextLine(); //väntar på ENTER
+                                    }
+
+                                }while(showChangeMenu);
+                        }
+                            else if (changeOrNot.equalsIgnoreCase("nej")){
+                                System.out.println("Du skickas tillbaks till menyn");
+                            }
+                            else{
+                                System.out.println("Du måste ange ja eller nej");
+                            }
                         }
                         break;
 
