@@ -12,10 +12,10 @@ import java.util.Scanner;
 
 public class RentalMenuChoice {
 
-    public void showMenuChoiceRental(RentalService rentalService, Inventory inventory, MemberRegistry memberRegistry){
+    public void showMenuChoiceRental(RentalService rentalService, Inventory inventory, MemberRegistry memberRegistry) {
         Scanner scanner = new Scanner(System.in);
         boolean showMenu = true;
-        do{
+        do {
             System.out.println("Här hanterar du uthyrningar!");
             System.out.println("1) Boka ny uthyrning");
             System.out.println("2) Avsluta en pågående uthyrning");
@@ -27,10 +27,10 @@ public class RentalMenuChoice {
             try {
                 int menuChoice = scanner.nextInt();
                 scanner.nextLine();
-                switch(menuChoice){
+                switch (menuChoice) {
                     case 1:
                         boolean showBookingMenu = true;
-                        do{
+                        do {
                             System.out.println("1) Här bokar du en ny uthyrning");
                             System.out.println("Här under visas info om klubbens utrustning:");
                             inventory.showItemInfo();
@@ -43,42 +43,40 @@ public class RentalMenuChoice {
                             System.out.println("4) Spara och stäng uthyrningssidan");
                             System.out.print("Ditt val (1-4): ");
 
-                            try{
+                            try {
                                 int choice = scanner.nextInt();
                                 scanner.nextLine();
-                                switch(choice){
+                                switch (choice) {
                                     case 1:
                                         boolean repeatCustomerID = true;
-                                        do{
+                                        do {
                                             System.out.println("Här bokar/hyr du fiskespöt");
                                             System.out.print("Ange kund ID: ");
                                             String ID = scanner.nextLine();
 
                                             Member member = memberRegistry.searchAndGetMember(ID);
-                                            if(member == null){
+                                            if (member == null) {
                                                 System.out.println("Det finns ingen medlem registrerad med det ID:et");
                                                 System.out.println("Försök igen");
-                                            }
-                                            else{
+                                            } else {
                                                 System.out.print("Ange tidsperiod för uthyrning(antal dagar): ");
-                                                try{
+                                                try {
                                                     int rentalPeriod = scanner.nextInt();
                                                     scanner.nextLine();
                                                     Item item = inventory.getItemFromInventory("Fiskespö");
                                                     Rental newRental = rentalService.createNewRental(item, member, rentalPeriod);
-                                                    if(newRental == null){
+                                                    if (newRental == null) {
                                                         System.out.println("Utrustningen är redan uthyrd!");
                                                         System.out.println("KLICKA PÅ ENTER FÖR ATT ÅTERGÅ TILL MENYN");
                                                         scanner.nextLine();
                                                         break;
-                                                    }
-                                                    else{
+                                                    } else {
                                                         rentalService.showRentalInfo(newRental);
                                                         System.out.println("KLICKA PÅ ENTER FÖR ATT ÅTERGÅ TILL MENYN FÖR UTHYRNINGAR");
                                                         scanner.nextLine();
                                                         repeatCustomerID = false;
                                                     }
-                                                }catch (InputMismatchException ex){
+                                                } catch (InputMismatchException ex) {
                                                     System.out.println("Du måste ange dagar som ett heltal!");
                                                     System.out.println("Klicka ENTER för att göra om bokning!");
                                                     scanner.nextLine(); //rensar felaktiga värdet från scannern
@@ -86,41 +84,39 @@ public class RentalMenuChoice {
                                                 }
 
                                             }
-                                        }while(repeatCustomerID);
+                                        } while (repeatCustomerID);
                                         break;
 
                                     case 2:
                                         boolean repeatCustomerIDD = true;
-                                        do{
+                                        do {
                                             System.out.println("Här bokar/hyr du ut fiskerullen");
                                             System.out.print("Ange kund ID: ");
                                             String ID = scanner.nextLine();
 
                                             Member member = memberRegistry.searchAndGetMember(ID);
-                                            if(member == null){
+                                            if (member == null) {
                                                 System.out.println("Det finns ingen medlem registrerad med det ID:et");
                                                 System.out.println("Försök igen");
-                                            }
-                                            else{
+                                            } else {
                                                 System.out.print("Ange tidsperiod för uthyrning(antal dagar): ");
-                                                try{
+                                                try {
                                                     int rentalPeriod = scanner.nextInt();
                                                     scanner.nextLine();
                                                     Item item = inventory.getItemFromInventory("Fiskerulle");
                                                     Rental newRental = rentalService.createNewRental(item, member, rentalPeriod);
-                                                    if(newRental == null){
+                                                    if (newRental == null) {
                                                         System.out.println("Utrustningen är redan uthyrd!");
                                                         System.out.println("KLICKA PÅ ENTER FÖR ATT ÅTERGÅ TILL MENYN");
                                                         scanner.nextLine();
                                                         break;
-                                                    }
-                                                    else{
+                                                    } else {
                                                         rentalService.showRentalInfo(newRental);
                                                         System.out.println("KLICKA PÅ ENTER FÖR ATT ÅTERGÅ TILL MENYN FÖR UTHYRNINGAR");
                                                         scanner.nextLine();
                                                         repeatCustomerIDD = false;
                                                     }
-                                                }catch(InputMismatchException ex){
+                                                } catch (InputMismatchException ex) {
                                                     System.out.println("Du måste ange dagar som ett heltal!");
                                                     System.out.println("Klicka ENTER för att göra om bokning!");
                                                     scanner.nextLine(); //rensar felaktiga värdet från scannern
@@ -129,41 +125,39 @@ public class RentalMenuChoice {
                                                 }
 
                                             }
-                                        }while(repeatCustomerIDD);
+                                        } while (repeatCustomerIDD);
                                         break;
 
                                     case 3:
                                         boolean repeatCustomerIDDD = true;
-                                        do{
+                                        do {
                                             System.out.println("Här bokar/hyr du betessettet");
                                             System.out.print("Ange kund ID: ");
                                             String ID = scanner.nextLine();
 
                                             Member member = memberRegistry.searchAndGetMember(ID);
-                                            if(member == null){
+                                            if (member == null) {
                                                 System.out.println("Det finns ingen medlem registrerad med det ID:et");
                                                 System.out.println("Försök igen");
-                                            }
-                                            else{
+                                            } else {
                                                 System.out.print("Ange tidsperiod för uthyrning(antal dagar): ");
-                                                try{
+                                                try {
                                                     int rentalPeriod = scanner.nextInt();
                                                     scanner.nextLine();
                                                     Item item = inventory.getItemFromInventory("Betesset");
                                                     Rental newRental = rentalService.createNewRental(item, member, rentalPeriod);
-                                                    if(newRental == null){
+                                                    if (newRental == null) {
                                                         System.out.println("Utrustningen är redan uthyrd!");
                                                         System.out.println("KLICKA PÅ ENTER FÖR ATT ÅTERGÅ TILL MENYN");
                                                         scanner.nextLine();
                                                         break;
-                                                    }
-                                                    else{
+                                                    } else {
                                                         rentalService.showRentalInfo(newRental);
                                                         System.out.println("KLICKA PÅ ENTER FÖR ATT ÅTERGÅ TILL MENYN FÖR UTHYRNINGAR");
                                                         scanner.nextLine();
                                                         repeatCustomerIDDD = false;
                                                     }
-                                                }catch(InputMismatchException ex){
+                                                } catch (InputMismatchException ex) {
                                                     System.out.println("Du måste ange dagar som ett heltal!");
                                                     System.out.println("Klicka ENTER för att göra om bokning!");
                                                     scanner.nextLine(); //rensar felaktiga värdet från scannern
@@ -171,7 +165,7 @@ public class RentalMenuChoice {
                                                 }
 
                                             }
-                                        }while(repeatCustomerIDDD);
+                                        } while (repeatCustomerIDDD);
                                         break;
 
                                     case 4:
@@ -185,14 +179,14 @@ public class RentalMenuChoice {
                                         scanner.nextLine();
                                         break;
                                 }
-                            }catch(InputMismatchException ex){
+                            } catch (InputMismatchException ex) {
                                 System.out.println("Du måste ange ett heltal!");
                                 System.out.println("Klicka ENTER för att återgå till val av utrustning och försök igen!");
                                 scanner.nextLine(); //rensar felaktiga värdet från scannern
                                 scanner.nextLine(); //väntar på ENTER
 
                             }
-                            }while(showBookingMenu);
+                        } while (showBookingMenu);
                         break;
 
                     case 2:
@@ -202,19 +196,17 @@ public class RentalMenuChoice {
                         String ID = scanner.nextLine();
 
                         Member member = memberRegistry.searchAndGetMember(ID);
-                        if(member == null){
+                        if (member == null) {
                             System.out.println("Ingen medlem är registrerad under detta ID");
-                        }
-                        else{
+                        } else {
                             System.out.println("Ange vilken utrustning bokningen gäller");
                             System.out.print("(fiskespö, fiskerulle eller betesset): ");
                             String itemType = scanner.nextLine();
 
                             Rental rental = member.getSpecificRental(itemType);
-                            if(rental == null){
+                            if (rental == null) {
                                 System.out.println("Medlemmen har ingen aktiv uthyrning med " + itemType);
-                            }
-                            else{
+                            } else {
                                 System.out.println("Uthyrningen avbokad!");
                                 rentalService.finishRental(member, rental);
 
@@ -227,10 +219,9 @@ public class RentalMenuChoice {
                         System.out.println("Ange ID för medlemmen:");
                         String id = scanner.nextLine();
                         Member member1 = memberRegistry.searchAndGetMember(id);
-                        if(member1 == null){
+                        if (member1 == null) {
                             System.out.println("Det finns ingen registrerad medlem med det ID:et");
-                        }
-                        else{
+                        } else {
                             member1.showActiveRentals();
                             System.out.println("KLICKA ENTER FÖR ATT ÅTERGÅ TILL MENYN!");
                             scanner.nextLine();
@@ -242,10 +233,9 @@ public class RentalMenuChoice {
                         System.out.println("Ange ID för medlemmen:");
                         String memberId = scanner.nextLine();
                         Member member2 = memberRegistry.searchAndGetMember(memberId);
-                        if(member2 == null){
+                        if (member2 == null) {
                             System.out.println("Det finns ingen registrerad medlem med det ID:et");
-                        }
-                        else{
+                        } else {
                             member2.showRentalHistory();
                             System.out.println("KLICKA ENTER FÖR ATT ÅTERGÅ TILL MENYN!");
                             scanner.nextLine();
@@ -267,7 +257,7 @@ public class RentalMenuChoice {
                 scanner.nextLine(); //väntar på ENTER
             }
 
-        }while(showMenu);
+        } while (showMenu);
     }
 }
 

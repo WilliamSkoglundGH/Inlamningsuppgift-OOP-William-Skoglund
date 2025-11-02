@@ -1,15 +1,15 @@
 package com.skoglund.entity.items;
 
-public class FishingRod extends Item{
+public class FishingRod extends Item {
     private String rodLength;
     private String castingWeight;
     private String rodType;
 
-    public FishingRod(){
+    public FishingRod() {
 
     }
 
-    public FishingRod(String brand, String color, boolean isAvailable, String rodLength, String castingWeight, String rodType){
+    public FishingRod(String brand, String color, boolean isAvailable, String rodLength, String castingWeight, String rodType) {
         super(brand, color, isAvailable);
         this.rodLength = rodLength;
         this.castingWeight = castingWeight;

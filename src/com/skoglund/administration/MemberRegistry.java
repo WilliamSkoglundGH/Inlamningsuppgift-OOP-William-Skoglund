@@ -9,39 +9,38 @@ public class MemberRegistry {
     private final List<Member> memberList;
 
 
-    public MemberRegistry(){
+    public MemberRegistry() {
         memberList = new ArrayList<>();
     }
 
-    public void addNewMember(Member newMember){
+    public void addNewMember(Member newMember) {
         memberList.add(newMember);
         System.out.println("Ny medlem registrerad:");
         printMemberInfo(newMember);
     }
 
-    public void removeMember(Member member){
+    public void removeMember(Member member) {
         memberList.remove(member);
     }
 
     public void showAllMembers() {
-        if(memberList.isEmpty()){
+        if (memberList.isEmpty()) {
             System.out.println("Det finns inga medlemmar registrerade!");
-        }
-        else{
+        } else {
             for (Member member : memberList) {
                 printMemberInfo(member);
             }
         }
     }
 
-    private void printMemberInfo(Member member){
+    private void printMemberInfo(Member member) {
         System.out.println("Namn: " + member.getName() + " | ID: " + member.getId() +
                 " | Åldersgrupp: " + member.getAgeGroup());
     }
 
-    public void searchAndDisplayMember(String ID){
-        for(Member member : memberList){
-            if(ID.equals(member.getId())){
+    public void searchAndDisplayMember(String ID) {
+        for (Member member : memberList) {
+            if (ID.equals(member.getId())) {
                 printMemberInfo(member);
                 return;
             }
@@ -49,9 +48,9 @@ public class MemberRegistry {
         System.out.println("Medlemmen är ej registrerad i klubben!");
     }
 
-    public Member searchAndGetMember(String ID){
-        for(Member member: memberList){
-            if(ID.equals(member.getId())){
+    public Member searchAndGetMember(String ID) {
+        for (Member member : memberList) {
+            if (ID.equals(member.getId())) {
                 return member;
             }
         }

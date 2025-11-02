@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class EquipmentMenuChoice {
 
-    public void showMenuChoiceEquipment(Inventory inventory){
+    public void showMenuChoiceEquipment(Inventory inventory) {
         Scanner scanner = new Scanner(System.in);
         boolean showMenu3 = true;
         do {
@@ -21,7 +21,7 @@ public class EquipmentMenuChoice {
             try {
                 int menuChoice = scanner.nextInt();
                 scanner.nextLine();
-                switch(menuChoice){
+                switch (menuChoice) {
                     case 1:
                         System.out.println("Här under visas klubbens utrustning");
                         inventory.showItemInfo();
@@ -53,6 +53,6 @@ public class EquipmentMenuChoice {
                 scanner.nextLine(); //rensar felaktiga värdet från scannern
                 scanner.nextLine(); //väntar på ENTER
             }
-        }while(showMenu3);
+        } while (showMenu3);
     }
 }

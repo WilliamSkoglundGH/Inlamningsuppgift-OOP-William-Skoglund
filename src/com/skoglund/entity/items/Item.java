@@ -6,10 +6,11 @@ public abstract class Item {
     private boolean isAvailable;
 
 
-    public Item(){
+    public Item() {
 
     }
-    public Item(String brand, String color, boolean isAvailable){
+
+    public Item(String brand, String color, boolean isAvailable) {
         this.brand = brand;
         this.color = color;
         this.isAvailable = isAvailable;
@@ -31,10 +32,11 @@ public abstract class Item {
 
     public abstract String getType();
 
-    public void ToAvailable(){
+    public void ToAvailable() {
         this.isAvailable = true;
     }
-    public void ToNotAvailable(){
+
+    public void ToNotAvailable() {
         this.isAvailable = false;
     }
 }

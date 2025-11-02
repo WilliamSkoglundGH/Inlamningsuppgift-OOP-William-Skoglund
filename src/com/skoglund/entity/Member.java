@@ -14,11 +14,11 @@ public class Member {
     Random random = new Random();
     StringBuilder stringBuilder = new StringBuilder();
 
-    public Member(){
+    public Member() {
 
     }
 
-    public Member(String name, String ageGroup){
+    public Member(String name, String ageGroup) {
         this.name = name;
         this.ageGroup = ageGroup;
         this.Id = createID();
@@ -27,8 +27,8 @@ public class Member {
         rentalHistory.add("Uthyrningshistorik för: " + this.name + " | " + this.Id + " | " + this.ageGroup);
     }
 
-    private String createID(){
-        for(int i = 0; i < 7; i++){
+    private String createID() {
+        for (int i = 0; i < 7; i++) {
             stringBuilder.append(random.nextInt(10));
         }
         return stringBuilder.toString();
@@ -60,37 +60,38 @@ public class Member {
         this.ageGroup = ageGroup;
     }
 
-    public void addNewRental(Rental rental){
+    public void addNewRental(Rental rental) {
         activeRentals.add(rental);
         rentalHistory.add("Ny bokning: | Utrustning: " + rental.item.getType() +
                 " | Uthyrningsperiod: " + rental.rentalTime + "dag/dagar");
     }
 
-    public void finishRental(Rental rental){
+    public void finishRental(Rental rental) {
         activeRentals.remove(rental);
         rentalHistory.add("Avslutad bokning: | Utrustning: " + rental.item.getType() + " " +
                 "| Uthyrningsperiod: " + rental.rentalTime + "dag/dagar");
     }
 
-    public void showRentalHistory(){
-        for(String history : rentalHistory){
+    public void showRentalHistory() {
+        for (String history : rentalHistory) {
             System.out.println(history);
         }
     }
-    public void showActiveRentals(){
-        if(activeRentals.isEmpty()){
+
+    public void showActiveRentals() {
+        if (activeRentals.isEmpty()) {
             System.out.println("Inga aktiva uthyrningar finns!");
-        }
-        else{
-            for(Rental rental : activeRentals){
+        } else {
+            for (Rental rental : activeRentals) {
                 System.out.println("Utrustning: " + rental.item.getType() + " | Uthyrningsperiod: " + rental.rentalTime +
                         " dag/dagar");
             }
         }
     }
-    public Rental getSpecificRental(String itemType){
-        for(Rental rental : activeRentals){
-            if(rental.item.getType().equalsIgnoreCase(itemType)){
+
+    public Rental getSpecificRental(String itemType) {
+        for (Rental rental : activeRentals) {
+            if (rental.item.getType().equalsIgnoreCase(itemType)) {
                 return rental;
             }
         }

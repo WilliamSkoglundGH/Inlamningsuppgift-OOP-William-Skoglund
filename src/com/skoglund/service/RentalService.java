@@ -9,17 +9,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RentalService {
-    private List<Rental> allRentals;
+    private final List<Rental> allRentals;
 
-    public RentalService(){
+    public RentalService() {
         allRentals = new ArrayList<>();
     }
 
-    public Rental createNewRental(Item item, Member member, int rentalTime){
-        if(!item.isAvailable()){
+    public Rental createNewRental(Item item, Member member, int rentalTime) {
+        if (!item.isAvailable()) {
             return null;
-        }
-        else{
+        } else {
             Rental rental = new Rental(item, member, rentalTime);
             allRentals.add(rental);
             member.addNewRental(rental);
@@ -28,52 +27,51 @@ public class RentalService {
         }
     }
 
-    public void finishRental(Member member, Rental rental){
+    public void finishRental(Member member, Rental rental) {
         member.finishRental(rental);
         Item item = rental.getItem();
         item.ToAvailable();
     }
-    public void showMemberActiveRentals(Member member){
+
+    public void showMemberActiveRentals(Member member) {
         member.showActiveRentals();
     }
-    public void showMemberRentalHistory(Member member){
+
+    public void showMemberRentalHistory(Member member) {
         member.showRentalHistory();
     }
 
-    public void showRentalInfo(Rental rental){
+    public void showRentalInfo(Rental rental) {
         System.out.println(rental.getRentalInfo() + " Pris: " + calculateRentalPrice(rental, rental.getMember()) + "kr");
     }
-     public PricePolicy getMemberPricePolicy(Rental rental, Member member){
+
+    public PricePolicy getMemberPricePolicy(Rental rental, Member member) {
         String memberAgeGroup = member.getAgeGroup();
         PricePolicy memberPricePolicy;
 
-        if(memberAgeGroup.equalsIgnoreCase("vuxen")){
+        if (memberAgeGroup.equalsIgnoreCase("vuxen")) {
             memberPricePolicy = new AdultPrice();
-        }
-        else if(memberAgeGroup.equalsIgnoreCase("barn")){
+        } else if (memberAgeGroup.equalsIgnoreCase("barn")) {
             memberPricePolicy = new ChildPrice();
-        }
-        else if(memberAgeGroup.equalsIgnoreCase("pensionär")){
+        } else if (memberAgeGroup.equalsIgnoreCase("pensionär")) {
             memberPricePolicy = new SeniorPrice();
-        }
-        else if(memberAgeGroup.equalsIgnoreCase("ungdom")){
+        } else if (memberAgeGroup.equalsIgnoreCase("ungdom")) {
             memberPricePolicy = new YouthPrice();
-        }
-        else{
+        } else {
             memberPricePolicy = new AdultPrice();
         }
         return memberPricePolicy;
-     }
+    }
 
-      public double calculateRentalPrice(Rental rental, Member member){
+    public double calculateRentalPrice(Rental rental, Member member) {
         return rental.getRentalTime() * getMemberPricePolicy(rental, member).getPricePerDay();
-      }
+    }
 
-      public double calculateIncomeFromRentals(){
+    public double calculateIncomeFromRentals() {
         double income = 0;
-        for(Rental rental : allRentals){
+        for (Rental rental : allRentals) {
             income += calculateRentalPrice(rental, rental.getMember());
         }
         return income;
-      }
+    }
 }
