@@ -15,7 +15,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         MemberRegistry memberRegistry = new MemberRegistry();
         MembershipService membershipService = new MembershipService(memberRegistry);
 
@@ -26,15 +26,15 @@ public class Main {
         RentalMenuChoice menuChoice2 = new RentalMenuChoice();
         EquipmentMenuChoice menuChoice3 = new EquipmentMenuChoice();
 
-        inventory.addItem(new FishingRod("Svartzonker", "Svart" , true, "7", "90-180",
+        inventory.addItem(new FishingRod("Svartzonker", "Svart", true, "7", "90-180",
                 "spinn"));
         inventory.addItem(new FishingReel("Daiwa", "Svart", true, "6:3:1", "Spinn",
                 "16"));
-        inventory.addItem(new LureSet("Westin" , "Röd", true, "Swimbait"));
+        inventory.addItem(new LureSet("Westin", "Röd", true, "Swimbait"));
 
         Scanner scanner = new Scanner(System.in);
         boolean showMenu = true;
-        do{
+        do {
             System.out.println("Välkommen till medlemsklubben för sportfiskare!");
             System.out.println("Du har kommit till startsidan, här under visas menyn:");
             System.out.println("1) Hantera medlemskap");
@@ -44,13 +44,13 @@ public class Main {
             System.out.println("5) Avsluta");
             System.out.print("Gör ditt val (1-5): ");
 
-            try{
+            try {
                 int menuChoice = scanner.nextInt();
                 scanner.nextLine();
-                switch(menuChoice){
-                        case 1:
-                            menuChoice1.showMenuChoiceMembership(memberRegistry, membershipService);
-                            break;
+                switch (menuChoice) {
+                    case 1:
+                        menuChoice1.showMenuChoiceMembership(memberRegistry, membershipService);
+                        break;
 
                     case 2:
                         menuChoice2.showMenuChoiceRental(rentalService, inventory, memberRegistry);
@@ -75,13 +75,13 @@ public class Main {
                         System.out.println("Heltalet du skriver in måste vara mellan 1 tom 6!");
                         break;
                 }
-            }catch (InputMismatchException ex){
+            } catch (InputMismatchException ex) {
                 System.out.println("Du måste ange ett heltal!");
                 System.out.println("Klicka ENTER för att återgå till startsidan och försök igen!");
                 scanner.nextLine(); //rensar felaktiga värdet från scannern
                 scanner.nextLine(); //väntar på ENTER
             }
-        }while(showMenu);
+        } while (showMenu);
 
     }
 }

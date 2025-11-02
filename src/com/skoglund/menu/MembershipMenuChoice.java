@@ -23,7 +23,7 @@ public class MembershipMenuChoice {
             try {
                 int menuChoice = scanner.nextInt();
                 scanner.nextLine();
-                switch(menuChoice){
+                switch (menuChoice) {
                     case 1:
                         System.out.println("1) Lägg till medlem:");
 
@@ -31,22 +31,21 @@ public class MembershipMenuChoice {
                         String name = scanner.nextLine();
 
                         boolean repeatAgeGroup = true;
-                        do{
+                        do {
                             System.out.print("Ange åldersgrupp (barn, ungdom, vuxen, pensionär): ");
                             String ageGroup = scanner.nextLine();
-                            if(!ageGroup.equalsIgnoreCase("barn") &&
+                            if (!ageGroup.equalsIgnoreCase("barn") &&
                                     !ageGroup.equalsIgnoreCase("ungdom") &&
                                     !ageGroup.equalsIgnoreCase("vuxen") &&
-                                    !ageGroup.equalsIgnoreCase("pensionär")){
+                                    !ageGroup.equalsIgnoreCase("pensionär")) {
                                 System.out.println("Åldersgrupp måste vara (barn, ungdom, vuxen eller pensionär)");
                                 System.out.println("Försök igen.");
 
-                            }
-                            else{
+                            } else {
                                 membershipService.addMember(new Member(name, ageGroup));
                                 repeatAgeGroup = false;
                             }
-                        }while(repeatAgeGroup);
+                        } while (repeatAgeGroup);
                         break;
 
                     case 2:
@@ -54,30 +53,29 @@ public class MembershipMenuChoice {
 
                         System.out.print("Ange medlemsID: ");
                         String ID = scanner.nextLine();
-                        if(membershipService.searchAndGetMember(ID) == null){
+                        if (membershipService.searchAndGetMember(ID) == null) {
                             System.out.println("Ingen medlem med detta ID är registrerad!");
-                        }
-                        else{
+                        } else {
                             membershipService.searchAndDisplayMember(ID);
 
                             System.out.println("Vill du ändra denna medlems uppgifter?(ja/nej): ");
                             String changeOrNot = scanner.nextLine();
 
-                            if(changeOrNot.equalsIgnoreCase("ja")){
+                            if (changeOrNot.equalsIgnoreCase("ja")) {
                                 Member memberForChange = membershipService.searchAndGetMember(ID);
                                 boolean showChangeMenu = true;
-                                do{
+                                do {
                                     System.out.println("1) Ändra namn");
                                     System.out.println("2) Ändra ID");
                                     System.out.println("3) Ändra åldersgrupp");
                                     System.out.println("4) Stäng menyn!");
                                     System.out.print("Ditt val: ");
 
-                                    try{
+                                    try {
                                         int choice = scanner.nextInt();
                                         scanner.nextLine();
 
-                                        switch(choice){
+                                        switch (choice) {
                                             case 1:
                                                 System.out.println("1) Ändra namn");
                                                 System.out.print("Ange nytt namn: ");
@@ -113,19 +111,17 @@ public class MembershipMenuChoice {
                                         }
                                         System.out.println("KLICKA ENTER FÖR ATT ÅTERGÅ TILL MENYN!");
                                         scanner.nextLine();
-                                    }catch(InputMismatchException ex){
+                                    } catch (InputMismatchException ex) {
                                         System.out.println("Du måste ange ett heltal!");
                                         System.out.println("Klicka ENTER för att återgå till ändringsmenyn och försök igen!");
                                         scanner.nextLine(); //rensar felaktiga värdet från scannern
                                         scanner.nextLine(); //väntar på ENTER
                                     }
 
-                                }while(showChangeMenu);
-                        }
-                            else if (changeOrNot.equalsIgnoreCase("nej")){
+                                } while (showChangeMenu);
+                            } else if (changeOrNot.equalsIgnoreCase("nej")) {
                                 System.out.println("Du skickas tillbaks till menyn");
-                            }
-                            else{
+                            } else {
                                 System.out.println("Du måste ange ja eller nej");
                             }
                         }
@@ -151,6 +147,6 @@ public class MembershipMenuChoice {
                 scanner.nextLine(); //rensar felaktiga värdet från scannern
                 scanner.nextLine(); //väntar på ENTER
             }
-        }while(showMenu1);
+        } while (showMenu1);
     }
 }

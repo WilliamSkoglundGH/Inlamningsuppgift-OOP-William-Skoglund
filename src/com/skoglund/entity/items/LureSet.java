@@ -4,10 +4,11 @@ public class LureSet extends Item {
     private String lureType;
     private final int amountOfLures = 5;
 
-    public LureSet(){
+    public LureSet() {
 
     }
-    public LureSet(String brand, String color, boolean isAvailable, String lureType){
+
+    public LureSet(String brand, String color, boolean isAvailable, String lureType) {
         super(brand, color, isAvailable);
         this.lureType = lureType;
     }

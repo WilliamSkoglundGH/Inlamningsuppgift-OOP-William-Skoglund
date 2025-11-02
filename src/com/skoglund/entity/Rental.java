@@ -7,10 +7,11 @@ public class Rental {
     Member member;
     int rentalTime;
 
-    public Rental(){
+    public Rental() {
 
     }
-    public Rental(Item item, Member member, int rentalTime){
+
+    public Rental(Item item, Member member, int rentalTime) {
         this.item = item;
         this.member = member;
         this.rentalTime = rentalTime;
@@ -28,7 +29,7 @@ public class Rental {
         return member;
     }
 
-    public String getRentalInfo(){
+    public String getRentalInfo() {
         return "Bokning genomförd!\n Kund: " + member.getName() + " | " + member.getId() + " | "
                 + member.getAgeGroup() + "\n" + "Utrustning: " + item.getType() + "\n"
                 + "Uthyrningsperiod: " + rentalTime + "dagar";
