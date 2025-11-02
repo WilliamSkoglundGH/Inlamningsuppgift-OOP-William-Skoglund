@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MemberRegistry {
-    private List<Member> memberList;
+    private final List<Member> memberList;
 
 
     public MemberRegistry(){
@@ -24,8 +24,13 @@ public class MemberRegistry {
     }
 
     public void showAllMembers() {
-        for (Member member : memberList) {
-            printMemberInfo(member);
+        if(memberList.isEmpty()){
+            System.out.println("Det finns inga medlemmar registrerade!");
+        }
+        else{
+            for (Member member : memberList) {
+                printMemberInfo(member);
+            }
         }
     }
 

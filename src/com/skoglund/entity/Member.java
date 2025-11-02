@@ -78,9 +78,14 @@ public class Member {
         }
     }
     public void showActiveRentals(){
-        for(Rental rental : activeRentals){
-            System.out.println("Utrustning: " + rental.item.getType() + " | Uthyrningsperiod: " + rental.rentalTime +
-                    " dag/dagar");
+        if(activeRentals.isEmpty()){
+            System.out.println("Inga aktiva uthyrningar finns!");
+        }
+        else{
+            for(Rental rental : activeRentals){
+                System.out.println("Utrustning: " + rental.item.getType() + " | Uthyrningsperiod: " + rental.rentalTime +
+                        " dag/dagar");
+            }
         }
     }
     public Rental getSpecificRental(String itemType){

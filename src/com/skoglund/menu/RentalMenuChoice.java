@@ -181,6 +181,8 @@ public class RentalMenuChoice {
 
                                     default:
                                         System.out.println("Heltalet du anger måste vara mellan 1 tom 4");
+                                        System.out.println("KLICKA ENTER FÖR ATT FÖRSÖKA IGEN");
+                                        scanner.nextLine();
                                         break;
                                 }
                             }catch(InputMismatchException ex){
@@ -213,7 +215,9 @@ public class RentalMenuChoice {
                                 System.out.println("Medlemmen har ingen aktiv uthyrning med " + itemType);
                             }
                             else{
+                                System.out.println("Uthyrningen avbokad!");
                                 rentalService.finishRental(member, rental);
+
                             }
                         }
                         break;
